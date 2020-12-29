@@ -9,14 +9,16 @@ import UIKit
 
 class CommentsVC: UIViewController {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var commentTextField: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var CommentInputBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var postButton: UIButton!
     
     //MARK: - variables
     private var currentComments = [OGComment]()
     private let fetchedComments = CommentsViewModel()
-    private var originalCommentTextViewHeight = CGFloat()
 
     //MARK: - view life cycle
     override func viewDidLoad() {
@@ -29,12 +31,16 @@ class CommentsVC: UIViewController {
         tableView.estimatedRowHeight = 400
         tableView.delegate = self
         tableView.dataSource = self
+        commentTextField.delegate = self
         addKeyBoardObservers()
+        setupCommentTextView()
+        disablePostButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        makeTextFieldFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,22 +66,114 @@ class CommentsVC: UIViewController {
         view.endEditing(true)
     }
     
+    private func setupCommentTextView() {
+        commentTextField.text = "Add a comment..."
+        commentTextField.textColor = UIColor.lightGray
+    }
+    
+    private func disablePostButton() {
+        postButton.isUserInteractionEnabled = false
+        postButton.setTitleColor(#colorLiteral(red: 0.5723509192, green: 0.5705082417, blue: 0.5704616308, alpha: 1), for: .normal)
+    }
+    
+    private func makeTextFieldFirstResponder() {
+        commentTextField.becomeFirstResponder()
+    }
+    
+    private func enablePostButton() {
+        postButton.isUserInteractionEnabled = true
+        postButton.setTitleColor(#colorLiteral(red: 0.2588235294, green: 0.8705882353, blue: 0.8823529412, alpha: 1), for: .normal)
+    }
+    
+    private func scrollToBottom() {
+        if currentComments.count != 0 {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                let indexPath = IndexPath(row: self.currentComments.count-1, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+        }
+    }
+    
+    private func resetContainerConstraints() {
+        let guide = view.safeAreaLayoutGuide
+        var frame = commentTextField.frame
+        frame.size.height = 40
+        commentTextField.frame = frame
+        commentContainerHeight.constant  = 0.01 * guide.layoutFrame.height
+    }
+    
     private func addKeyBoardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func handleKeyBoardNotification(notification: NSNotification) {
+        self.commentTextField.snapshotView(afterScreenUpdates: true)
         let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.CommentInputBottomConstraint.constant = isKeyboardShowing ? +keyboardSize.height : 0
-            
             UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut) {
                 self.view.layoutIfNeeded()
             } completion: { (completed) in
             }
-
         }
+    }
+    
+    //MARK: - IB Actions
+    @IBAction func postButtonPressed(_ sender: Any) {
+        let comment = Comment(id: 10, commentOwner: "Walid", commentText: commentTextField.text)
+        currentComments.append(comment)
+        setupCommentTextView()
+        scrollToBottom()
+        disablePostButton()
+        commentTextField.resignFirstResponder()
+        resetContainerConstraints()
+    }
+    
+}
+
+//MARK: - comment Text View delegate
+
+extension CommentsVC: UITextViewDelegate {
+    
+    private func adjustTextViewHeight() {
+        let guide = view.safeAreaLayoutGuide
+        let maxCommentContainerHeight = 0.15 * guide.layoutFrame.height
+        let previousHeight = commentTextField.frame.height
+        var frame = commentTextField.frame;
+        frame.size.height = commentTextField.contentSize.height;
+        
+        if(frame.size.height >= maxCommentContainerHeight) {
+            return
+        }
+        
+        commentTextField.frame = frame
+        commentContainerHeight.constant += frame.size.height - previousHeight
+        self.view.layoutIfNeeded()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Add a comment..."
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if (commentTextField.text == "Add a comment..." || commentTextField.text == "") {
+            disablePostButton()
+        } else {
+            enablePostButton()
+        }
+        self.adjustTextViewHeight()
     }
 }
 
