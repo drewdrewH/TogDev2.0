@@ -99,14 +99,16 @@ class HomeFeedVC: UIViewController {
 extension HomeFeedVC{
 // upload Button Clicked action
     @objc func uploadButtonClicked() {
+          }
+    @objc private func uploadButton() {
+        print("Test")
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imagePickerViewController") as? ImagePickerVC {
               if let navigator = navigationController {
                   navigator.pushViewController(viewController, animated: true)
               }
-          }    }
-    @objc private func uploadButton() {
-        print("Test")
+          }
     }
+}
 
 
 
@@ -198,9 +200,11 @@ extension HomeFeedVC: MainFeedCellDelegate {
               if let navigator = navigationController {
                   navigator.pushViewController(viewController, animated: true)
               }
-          }    }
+          }
+        
+    }
     
-    
+
     func didTapLikeButton(for cell: MainFeedTableViewCell) {
         let currentCellTag = cell.tag
         let currentCell = tableView.cellForRow(at: IndexPath(row: cell.tag, section: 0)) as! MainFeedTableViewCell

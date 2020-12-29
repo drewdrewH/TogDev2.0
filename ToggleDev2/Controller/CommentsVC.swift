@@ -122,7 +122,7 @@ class CommentsVC: UIViewController {
     
     //MARK: - IB Actions
     @IBAction func postButtonPressed(_ sender: Any) {
-        let comment = Comment(id: 10, commentOwner: "Walid", commentText: commentTextField.text)
+        let comment = OGComment(id: 10, commentOwner: "Walid", commentText: commentTextField.text)
         currentComments.append(comment)
         setupCommentTextView()
         scrollToBottom()

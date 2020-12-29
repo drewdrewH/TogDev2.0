@@ -15,13 +15,15 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
     }
     
-    @IBAction func selectPhotoPressed(_ sender: Any) {
-            let imagePickerVC = UIImagePickerController()
-            imagePickerVC.sourceType = .photoLibrary
-            
-            imagePickerVC.delegate = self // new
-            present(imagePickerVC, animated: true)
-        }
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        let imagePickerVC = UIImagePickerController()
+        imagePickerVC.sourceType = .photoLibrary
+        imagePickerVC.mediaTypes = ["public.movie"]
+        imagePickerVC.delegate = self // new
+        present(imagePickerVC, animated: true)
+    }
+    
 
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             // do someting...
