@@ -30,7 +30,6 @@
 		01F5F982259A887D00871E16 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F5F981259A887D00871E16 /* CommentTableViewCell.swift */; };
 		0C64924766AD452C8EBE78C4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E265C20374523BBA01FB9 /* Comment.swift */; };
 		1A84DF692E3B456DA23A5810 /* Comment+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561489E5EAA341C0BEA21CB1 /* Comment+Schema.swift */; };
-		2196536075F038BBB4B39D64 /* Pods_ToggleDev2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E37636BF2D54C62FC26470 /* Pods_ToggleDev2.framework */; };
 		23D79DDA259B16C800EB0DFF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D79DD9259B16C800EB0DFF /* SessionManager.swift */; };
 		23D79DDE259B175E00EB0DFF /* currentSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D79DDD259B175E00EB0DFF /* currentSessionInfo.swift */; };
 		23D79DE1259B179400EB0DFF /* listenToSessionUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D79DE0259B179400EB0DFF /* listenToSessionUpdates.swift */; };
@@ -79,7 +78,6 @@
 		554599FDA8C541C2907DAC4B /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		561489E5EAA341C0BEA21CB1 /* Comment+Schema.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "Comment+Schema.swift"; path = "amplify/generated/models/Comment+Schema.swift"; sourceTree = "<group>"; };
 		6C4FD96398ED4492BD65A48E /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
-		98E37636BF2D54C62FC26470 /* Pods_ToggleDev2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToggleDev2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DFB2A84BCC8555BE662DA9A /* Pods-ToggleDev2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToggleDev2.release.xcconfig"; path = "Target Support Files/Pods-ToggleDev2/Pods-ToggleDev2.release.xcconfig"; sourceTree = "<group>"; };
 		9F2DCEE82F5149FF1BF9D655 /* Pods-ToggleDev2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToggleDev2.debug.xcconfig"; path = "Target Support Files/Pods-ToggleDev2/Pods-ToggleDev2.debug.xcconfig"; sourceTree = "<group>"; };
 		E15EF0E2950C4844B8D30DF2 /* Post+Schema.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "Post+Schema.swift"; path = "amplify/generated/models/Post+Schema.swift"; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2196536075F038BBB4B39D64 /* Pods_ToggleDev2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +225,6 @@
 		34A9E24BBE196906345205B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				98E37636BF2D54C62FC26470 /* Pods_ToggleDev2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
