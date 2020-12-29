@@ -49,7 +49,7 @@ class MainFeedTableViewCell: UITableViewCell {
     }
     
     
-    func configure(with model: Post) {
+    func configure(with model: OGPost) {
         let thumbnailManager = ThumbnailManager()
         usernameLabel.text = "\(model.postOwner)"
         numberOfLikes.text = "\(model.numberOfLikes) Likes"

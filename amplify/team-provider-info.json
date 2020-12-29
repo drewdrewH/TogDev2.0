@@ -1,0 +1,27 @@
+{
+  "togdev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-togdev2-togdev-231450-authRole",
+      "UnauthRoleArn": "arn:aws:iam::172704994193:role/amplify-togdev2-togdev-231450-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::172704994193:role/amplify-togdev2-togdev-231450-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-togdev2-togdev-231450-deployment",
+      "UnauthRoleName": "amplify-togdev2-togdev-231450-unauthRole",
+      "StackName": "amplify-togdev2-togdev-231450",
+      "StackId": "arn:aws:cloudformation:us-west-2:172704994193:stack/amplify-togdev2-togdev-231450/8d7af850-49a5-11eb-bd19-0697f9d65ae7",
+      "AmplifyAppId": "d1z6boyr9xc1cl"
+    },
+    "categories": {
+      "function": {
+        "togdev27368e70eCustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "Toggle Verification",
+          "EMAILMESSAGE": "Welcome to Toggle"
+        }
+      },
+      "auth": {
+        "togdev29587fd1a": {}
+      }
+    }
+  }
+}

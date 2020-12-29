@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sqo-gI-3pe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sqo-gI-3pe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -844,6 +844,7 @@
                     <connections>
                         <outlet property="tableView" destination="0ny-Og-OgL" id="jnP-4j-aSd"/>
                         <segue destination="Rei-c9-YG9" kind="show" id="2sh-kX-9SE"/>
+                        <segue destination="gfN-Ep-R1F" kind="show" id="K6W-ls-9Yb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7w-Ou-rC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -965,6 +966,22 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1050.7246376811595" y="2215.8482142857142"/>
+        </scene>
+        <!--Image PickerVC-->
+        <scene sceneID="WFk-vL-00c">
+            <objects>
+                <viewController storyboardIdentifier="imagePickerViewController" id="gfN-Ep-R1F" customClass="ImagePickerVC" customModule="ToggleDev2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M3X-xx-L2r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="frc-jc-MkU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lBK-R7-lyD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ldk-uz-9eH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2052" y="2216"/>
         </scene>
         <!--Search-->
         <scene sceneID="6dt-KV-EMh">

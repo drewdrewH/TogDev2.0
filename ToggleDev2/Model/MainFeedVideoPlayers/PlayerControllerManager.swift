@@ -49,7 +49,7 @@ class PlayerControllerManager: ObservableObject {
         }
     }
     
-    public func replacePlayerItem(from currentPostID: Int, to newPost: Post) {
+    public func replacePlayerItem(from currentPostID: Int, to newPost: OGPost) {
         let AVPlayerToUpdate = getUniquePlayer(postID: currentPostID)
         let asset = AVAsset(url: URL(string: newPost.videoURL)!)
         let playerItem = AVPlayerItem(asset: asset)

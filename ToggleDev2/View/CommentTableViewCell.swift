@@ -26,7 +26,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     //MARK: - configuration
-    func configure(with model: Comment) {
+    func configure(with model: OGComment) {
         let boldText = model.commentOwner
         let attrs = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 1))]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)

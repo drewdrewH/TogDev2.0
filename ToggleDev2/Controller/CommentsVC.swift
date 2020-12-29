@@ -14,7 +14,7 @@ class CommentsVC: UIViewController {
     @IBOutlet weak var CommentInputBottomConstraint: NSLayoutConstraint!
     
     //MARK: - variables
-    private var currentComments = [Comment]()
+    private var currentComments = [OGComment]()
     private let fetchedComments = CommentsViewModel()
     private var originalCommentTextViewHeight = CGFloat()
 

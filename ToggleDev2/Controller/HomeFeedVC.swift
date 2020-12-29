@@ -13,7 +13,7 @@ class HomeFeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - variables
-    private var posts = [Post]()
+    private var posts = [OGPost]()
     private let playerManager = PlayerControllerManager()
     private var visibleCells = [IndexPath : CGFloat]()
     private var currentPlayingCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
@@ -101,12 +101,19 @@ class HomeFeedVC: UIViewController {
             }
         }
     }
-    
-    // upload Button Clicked action
-    @objc func uploadButtonClicked() {
-        
-    }
 }
+    
+extension HomeFeedVC{
+// upload Button Clicked action
+    @objc func uploadButtonClicked() {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imagePickerViewController") as? ImagePickerVC {
+              if let navigator = navigationController {
+                  navigator.pushViewController(viewController, animated: true)
+              }
+          }    }
+    }
+
+
 
 //MARK: - table view delegate
 extension HomeFeedVC: UITableViewDelegate {

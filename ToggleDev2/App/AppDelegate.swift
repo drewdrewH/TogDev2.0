@@ -8,12 +8,14 @@
 import UIKit
 import CoreData
 import AVKit
-
+import Amplify
+import AmplifyPlugins
+import Combine
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+   // @ var sessionManager = SessionManager()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //configure audio
         let audioSession = AVAudioSession.sharedInstance()
@@ -22,6 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+         //configure amplify
+        do {
+            let models = AmplifyModels()
+            try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: models))
+            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: models))
+            try Amplify.add(plugin: AWSS3StoragePlugin())
+            
+            try Amplify.configure()
+            print("Amplify configured with auth plugin")
+        } catch {
+            print("Failed to initialize Amplify with \(error)")
         }
         
         return true
@@ -39,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+        
     }
 
     // MARK: - Core Data stack
