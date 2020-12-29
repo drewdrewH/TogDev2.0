@@ -72,21 +72,14 @@ class HomeFeedVC: UIViewController {
     //MARK: - view setup helpers
     private func setupNavControllerView() {
         
-        let appLogo = UIButton(type: UIButton.ButtonType.custom)
-        appLogo.setImage(UIImage(named: "AppLogo"), for: .normal)
-        appLogo.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
-        let leftBarButton = UIBarButtonItem(customView: appLogo)
-        self.navigationItem.leftBarButtonItems = [leftBarButton]
+        let appLogo = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
+        appLogo.setBackgroundImage(UIImage(named: "AppLogo"), for: .normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: appLogo)
         
-        let uploadButton = UIButton(type: UIButton.ButtonType.custom)
-        uploadButton.setImage(UIImage(systemName: "camera.circle.fill"), for: .normal)
-        uploadButton.contentVerticalAlignment = .fill
-        uploadButton.contentHorizontalAlignment = .fill
-        uploadButton.tintColor = #colorLiteral(red: 0.2588235294, green: 0.8705882353, blue: 0.8823529412, alpha: 1)
-        uploadButton.addTarget(self, action:#selector(uploadButtonClicked), for: .touchDragInside)
-        uploadButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        let rightBarButton = UIBarButtonItem(customView: uploadButton)
-        self.navigationItem.rightBarButtonItems = [rightBarButton]
+        let uploadButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        uploadButton.setBackgroundImage(UIImage(systemName: "camera.circle.fill"), for: .normal)
+        uploadButton.addTarget(self, action: #selector(HomeFeedVC.uploadButton), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: uploadButton)
     }
     
     private func playInitialCell() {
@@ -102,9 +95,8 @@ class HomeFeedVC: UIViewController {
         }
     }
     
-    // upload Button Clicked action
-    @objc func uploadButtonClicked() {
-        
+    @objc private func uploadButton() {
+        print("Test")
     }
 }
 

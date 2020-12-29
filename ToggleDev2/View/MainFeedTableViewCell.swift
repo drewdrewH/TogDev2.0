@@ -58,20 +58,20 @@ class MainFeedTableViewCell: UITableViewCell {
         videoURL = model.videoURL
         let generatedImage = thumbnailManager.previewImageFromVideo(url: URL(string: videoURL)! as NSURL)
         if let image = generatedImage {
-            createThumbnail(for: thumbnail, using: image)
+            thumbnail.image = image
         } else {
-            createThumbnail(for: thumbnail, using: UIImage(named: "highway")!)
+            thumbnail.image = UIImage(named: "highway")
         }
     }
     
     //MARK: - setup thumbnail
-    func createThumbnail(for imageView: UIImageView, using image: UIImage) {
+    /*func createThumbnail(for imageView: UIImageView, using image: UIImage) {
         let ratio = image.size.width / image.size.height
-        let newHeight = (thumbnail.frame.width / ratio) * 1.5
+        let newHeight = (thumbnail.frame.width / ratio)
         HeightOfThumbNailImage.constant = newHeight
         imageView.image = image
         self.layoutIfNeeded()
-    }
+    }*/
     
     //MARK: - adding video layer
     
