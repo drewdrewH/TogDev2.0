@@ -46,6 +46,7 @@ class CommentsVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        removeKeyboardObservers()
     }
     
     //MARK: - IB actions
@@ -98,7 +99,7 @@ class CommentsVC: UIViewController {
     private func resetContainerConstraints() {
         let guide = view.safeAreaLayoutGuide
         var frame = commentTextField.frame
-        frame.size.height = 40
+        frame.size.height = 50
         commentTextField.frame = frame
         commentContainerHeight.constant  = 0.01 * guide.layoutFrame.height
     }
@@ -106,6 +107,11 @@ class CommentsVC: UIViewController {
     private func addKeyBoardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func removeKeyboardObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func handleKeyBoardNotification(notification: NSNotification) {

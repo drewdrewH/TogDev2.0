@@ -12,13 +12,6 @@
       "AmplifyAppId": "d1z6boyr9xc1cl"
     },
     "categories": {
-      "function": {
-        "togdev27368e70eCustomMessage": {
-          "REDIRECTURL": "",
-          "EMAILSUBJECT": "Toggle Verification",
-          "EMAILMESSAGE": "Welcome to Toggle"
-        }
-      },
       "auth": {
         "togdev29587fd1a": {}
       }
