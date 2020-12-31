@@ -4,14 +4,17 @@ import Foundation
 
 public struct Comment: Model {
   public let id: String
-  public var post: Post?
   public var content: String
+  public var owner: User
+  public var post: Post?
   
   public init(id: String = UUID().uuidString,
-      post: Post? = nil,
-      content: String) {
+      content: String,
+      owner: User,
+      post: Post? = nil) {
       self.id = id
-      self.post = post
       self.content = content
+      self.owner = owner
+      self.post = post
   }
 }

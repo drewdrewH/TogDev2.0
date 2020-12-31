@@ -10,15 +10,15 @@ import AVFoundation
 import AVKit
 
 class PlayerControllerManager: ObservableObject {
-    private var playerControllers = [Int : PlayerConroller]()
+    private var playerControllers = [String : PlayerConroller]()
     
     init() {}
     
-    func appendPlayerController(postID: Int, player: PlayerConroller) {
+    func appendPlayerController(postID: String, player: PlayerConroller) {
         playerControllers[postID] = player
     }
     
-    func removePlayer(for id: Int) -> PlayerConroller? {
+    func removePlayer(for id: String) -> PlayerConroller? {
         return playerControllers.removeValue(forKey: id)
     }
     
@@ -30,33 +30,34 @@ class PlayerControllerManager: ObservableObject {
         return playerToReturn
     }
     
-    public func getUniquePlayer(postID: Int) -> PlayerConroller? {
+    public func getUniquePlayer(postID: String) -> PlayerConroller? {
         if let currentPlayer = playerControllers[postID] {
             return currentPlayer
         }
         return nil
     }
     
-    public func playUniquePlayer(postID: Int) {
+    public func playUniquePlayer(postID: String) {
         if let currentPlayer = playerControllers[postID] {
             currentPlayer.playVideo()
         }
     }
     
-    public func pauseUniquePlayer(postID: Int) {
+    public func pauseUniquePlayer(postID: String) {
         if let currentPlayer = playerControllers[postID] {
             currentPlayer.pauseVideo()
         }
     }
     
-    public func replacePlayerItem(from currentPostID: Int, to newPost: OGPost) {
+    public func replacePlayerItem(from currentPostID: String, to newPost: Post) {
+        let vidUrl = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(newPost.id).mp4"
         let AVPlayerToUpdate = getUniquePlayer(postID: currentPostID)
-        let asset = AVAsset(url: URL(string: newPost.videoURL)!)
+        let asset = AVAsset(url: URL(string: vidUrl)!)
         let playerItem = AVPlayerItem(asset: asset)
         AVPlayerToUpdate?.replacePlayerItem(AVPlayerItem: playerItem)
     }
     
-    public func assignPlayerTo(cellPlayerLayer: UIView, withID: Int) {
+    public func assignPlayerTo(cellPlayerLayer: UIView, withID: String) {
         if let sublayers = cellPlayerLayer.layer.sublayers {
             for layer in sublayers {
                 if (layer.name == "playerLayer") {
@@ -70,7 +71,7 @@ class PlayerControllerManager: ObservableObject {
         }
     }
     
-    public func restartPlayer(for postID: Int) {
+    public func restartPlayer(for postID: String) {
         if let currentPlayer = playerControllers[postID] {
             currentPlayer.seekVideoToStart()
         }

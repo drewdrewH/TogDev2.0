@@ -1,0 +1,289 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreatePost {
+  onCreatePost {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdatePost {
+  onUpdatePost {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeletePost {
+  onDeletePost {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateComment {
+  onCreateComment {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,316 @@
+# this is an auto generated file. This will be overwritten
+mutation CreatePost(
+  $input: CreatePostInput!
+  $condition: ModelPostConditionInput
+) {
+  createPost(input: $input, condition: $condition) {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdatePost(
+  $input: UpdatePostInput!
+  $condition: ModelPostConditionInput
+) {
+  updatePost(input: $input, condition: $condition) {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeletePost(
+  $input: DeletePostInput!
+  $condition: ModelPostConditionInput
+) {
+  deletePost(input: $input, condition: $condition) {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  createUser(input: $input, condition: $condition) {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateComment(
+  $input: CreateCommentInput!
+  $condition: ModelCommentConditionInput
+) {
+  createComment(input: $input, condition: $condition) {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateComment(
+  $input: UpdateCommentInput!
+  $condition: ModelCommentConditionInput
+) {
+  updateComment(input: $input, condition: $condition) {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteComment(
+  $input: DeleteCommentInput!
+  $condition: ModelCommentConditionInput
+) {
+  deleteComment(input: $input, condition: $condition) {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

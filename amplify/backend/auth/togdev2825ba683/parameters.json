@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "togdev29587fd1a_identitypool_9587fd1a",
+    "identityPoolName": "togdev2825ba683_identitypool_825ba683",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "togdev9587fd1a",
-    "userPoolName": "togdev29587fd1a_userpool_9587fd1a",
+    "resourceNameTruncated": "togdev825ba683",
+    "userPoolName": "togdev2825ba683_userpool_825ba683",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,8 +18,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email",
-        "preferred_username"
+        "email"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -29,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "togdev9587fd1a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "togdev825ba683_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "9587fd1a",
-    "resourceName": "togdev29587fd1a",
+    "sharedId": "825ba683",
+    "resourceName": "togdev2825ba683",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -47,15 +46,7 @@
         ]
     },
     "useDefault": "default",
-    "usernameAttributes": [
-        "email"
-    ],
-    "triggers": "{}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }

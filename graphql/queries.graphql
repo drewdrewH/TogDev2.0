@@ -1,0 +1,173 @@
+# this is an auto generated file. This will be overwritten
+query GetPost($id: ID!) {
+  getPost(id: $id) {
+    id
+    postOwner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    caption
+    numberOfLikes
+    status
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListPosts(
+  $filter: ModelPostFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    name
+    posts {
+      items {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetComment($id: ID!) {
+  getComment(id: $id) {
+    id
+    content
+    owner {
+      id
+      name
+      posts {
+        nextToken
+      }
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    post {
+      id
+      postOwner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      caption
+      numberOfLikes
+      status
+      comments {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      owner {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      post {
+        id
+        caption
+        numberOfLikes
+        status
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

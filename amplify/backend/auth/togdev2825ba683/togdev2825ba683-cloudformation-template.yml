@@ -114,14 +114,6 @@ Parameters:
   
             
         
-  usernameAttributes:
-    Type: CommaDelimitedList
-      
-  triggers:
-    Type: String
-  
-            
-        
   userPoolGroupList:
     Type: CommaDelimitedList
       
@@ -130,14 +122,6 @@ Parameters:
     Type: String
   
             
-      
-  parentStack:
-    Type: String
-        
-        
-  permissions:
-    Type: CommaDelimitedList
-      
         
   dependsOn:
     Type: CommaDelimitedList
@@ -153,7 +137,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'togdev9587fd1a_sns-role', !Join ['',[ 'sns', '9587fd1a', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'togdev825ba683_sns-role', !Join ['',[ 'sns', '825ba683', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument: 
         Version: "2012-10-17"
         Statement: 
@@ -165,10 +149,10 @@ Resources:
               - "sts:AssumeRole"
             Condition: 
               StringEquals:
-                sts:ExternalId: togdev9587fd1a_role_external_id
+                sts:ExternalId: togdev825ba683_role_external_id
       Policies: 
         - 
-          PolicyName: togdev9587fd1a-sns-policy
+          PolicyName: togdev825ba683-sns-policy
           PolicyDocument: 
             Version: "2012-10-17"
             Statement: 
@@ -193,11 +177,6 @@ Resources:
           Required: true
           Mutable: true
         
-        -
-          Name: preferred_username
-          Required: true
-          Mutable: true
-        
       
       
       
@@ -214,34 +193,20 @@ Resources:
           RequireNumbers: false
           RequireSymbols: false
           RequireUppercase: false
-      
-      UsernameAttributes: !Ref usernameAttributes
           
       MfaConfiguration: !Ref mfaConfiguration
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration: 
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: togdev9587fd1a_role_external_id
+        ExternalId: togdev825ba683_role_external_id
     
-  
-    
-    
-  
-    
-    
-  
-  
-   
-    
-  # Updating lambda role with permissions to Cognito
-  
   
   UserPoolClientWeb:
   # Created provide application access to user pool
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: togdev9587fd1a_app_clientWeb
+      ClientName: togdev825ba683_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -251,7 +216,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: togdev9587fd1a_app_client
+      ClientName: togdev825ba683_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -262,7 +227,7 @@ Resources:
   # Created to execute Lambda which gets userpool app client config values
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '9587fd1a', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '825ba683', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -316,7 +281,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: togdev9587fd1a_userpoolclient_lambda_iam_policy
+      PolicyName: togdev825ba683_userpoolclient_lambda_iam_policy
       Roles: 
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -333,7 +298,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: togdev9587fd1a_userpoolclient_lambda_log_policy
+      PolicyName: togdev825ba683_userpoolclient_lambda_log_policy
       Roles: 
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -373,7 +338,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'togdev29587fd1a_identitypool_9587fd1a', !Join ['',['togdev29587fd1a_identitypool_9587fd1a', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'togdev2825ba683_identitypool_825ba683', !Join ['',['togdev2825ba683_identitypool_825ba683', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient
