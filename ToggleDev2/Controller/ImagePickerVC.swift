@@ -9,11 +9,12 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     }
     
     @IBOutlet weak var video: UIImageView!
+    
     @IBAction func buttonTapped(_ sender: UIButton) {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.sourceType = .photoLibrary
         imagePickerVC.mediaTypes = ["public.movie"]
-        imagePickerVC.delegate = self // new
+        imagePickerVC.delegate = self
         present(imagePickerVC, animated: true)
     }
     
@@ -21,52 +22,41 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         
     }
     
-    func imagePickerController( picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("imagePickerController")
         // do someting...
         picker.dismiss(animated: true, completion: nil)
-
-        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if let url = info[.mediaURL] as? URL {
-            do {
-                let docDirURL: URL = documentsDirectoryURL.appendingPathComponent("test.mov")
-                
-                if FileManager.default.fileExists(atPath: docDirURL.path) {
-                    do {
-                        try FileManager.default.removeItem(at: docDirURL)
-                        print("Removed pre-existing file at \(docDirURL)")
-                    } catch {
-                        print("Failed to remove file.")
-                    }
-                }
-                try FileManager.default.moveItem(at: url, to: docDirURL)
-                print("Movie saved in application store.")
-                let dataManager = DataManager()
-                movToMp4(at: docDirURL) { (mp4Url, _) in
-                    dataManager.uploadFile(fileKey: mp4Url?.lastPathComponent ?? "test.mp4")
-                }
-            } catch {
-                print("Error: ImagePickerController")
-                print(error)
-            }
-        }
-        
-        // create thumbnail for view page for form
-        let asset = AVAsset(url: videoURL!)
-        let assetImageGenerator = AVAssetImageGenerator(asset: asset)
-        
-        var time = asset.duration
-        time.value = min(time.value, 2)
-        
-        do {
-            let imageRef = try assetImageGenerator.copyCGImage(at: time, actualTime: nil)
-            video.image = UIImage(cgImage: imageRef)
-        } catch {
-            print("error")
+            self.videoURL = url
+            // create thumbnail for view page for form
+            let asset = AVAsset(url: url)
+            let assetImageGenerator = AVAssetImageGenerator(asset: asset)
             
+            var time = asset.duration
+            time.value = min(time.value, 2)
+            
+            do {
+                let imageRef = try assetImageGenerator.copyCGImage(at: time, actualTime: nil)
+                video.image = UIImage(cgImage: imageRef)
+            } catch {
+                print("imagePickerController error")
+            }
         }
     }
     
     @IBAction func submitPost(_ sender: Any) {
+        // TODO: move code form ImagePickerController to a backend function then create the new post here using state variables.
+        // make a post and upload the video.
+        let user = User(name: "James")
+        let post = Post(postOwner: user, caption: "Ok, this is epic.", status: PostStatus.active)
+        let videoManager = VideoManager()
+        let dataManager = DataManager()
+        if self.videoURL == nil {
+            print("Video Url is nil. Not uploading or creating post.")
+        } else {
+            videoManager.uploadVideo(url: self.videoURL!, id: post.id)
+            dataManager.createUser(user: user)
+            dataManager.createPost(post: post)
+        }
     }
 }

@@ -15,6 +15,11 @@
       "auth": {
         "togdev29587fd1a": {},
         "togdev2825ba683": {}
+      },
+      "video": {
+        "userVideos": {
+          "s3UUID": "b2qx90hs"
+        }
       }
     }
   }

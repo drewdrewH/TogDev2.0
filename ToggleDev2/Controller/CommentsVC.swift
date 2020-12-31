@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Amplify
+import AmplifyPlugins
 
 class CommentsVC: UIViewController {
     
@@ -17,7 +19,7 @@ class CommentsVC: UIViewController {
     @IBOutlet weak var postButton: UIButton!
     
     //MARK: - variables
-    private var currentComments = [OGComment]()
+    private var currentComments = [Comment]()
     private let fetchedComments = CommentsViewModel()
 
     //MARK: - view life cycle
@@ -128,8 +130,9 @@ class CommentsVC: UIViewController {
     
     //MARK: - IB Actions
     @IBAction func postButtonPressed(_ sender: Any) {
-        let comment = OGComment(id: 10, commentOwner: "Walid", commentText: commentTextField.text)
+        let comment = Comment(content: commentTextField.text, owner: User(name: "Walid"))
         currentComments.append(comment)
+        // TODO: put this comment in the cloud
         setupCommentTextView()
         scrollToBottom()
         disablePostButton()

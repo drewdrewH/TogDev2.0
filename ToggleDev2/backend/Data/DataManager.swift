@@ -15,7 +15,7 @@ class DataManager {
      Get a list of all the posts in the database.
      completionHandler:@escaping([Post]) ->[Post]
      */
-    func queryPosts(completion: ([Post]) -> ()) {
+    func getAllPosts(completion: ([Post]) -> ()) {
         Amplify.DataStore.query(Post.self) { result in
             switch(result) {
             case .success(let posts):
@@ -27,7 +27,50 @@ class DataManager {
         }
     }
     
-    func createPost(postOwner: User, caption: String, numberOfLikes: Int ) {
+    /*
+     Mostly for debugging, get all posts from the post table in the database.
+     */
+    func getAllComments(completion:@escaping ([Comment]) -> ()) {
+        Amplify.API.query(request: .list(Comment.self)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let comments):
+                    print("Successfully retrieved all comments: \(comments)")
+                    completion(comments)
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            case .failure(let error):
+                print("Got failed event with error \(error)")
+            }
+        }
+
+    }
+    
+    func getPostComments(post: Post, completion:@escaping (List<Comment>?) -> ()) {
+        Amplify.API.query(request: .get(Post.self, byId: post.id)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let post):
+                    guard let post = post else {
+                        print("Could not find post")
+                        return
+                    }
+                    print("Successfully retrieved post: \(post)")
+                    completion(post.comments)
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            case .failure(let error):
+                print("Got failed event with error \(error)")
+            }
+        }
+    }
+    
+    
+    func createPost(postOwner: User, caption: String, numberOfLikes: Int) {
         let post: Post = Post(postOwner: postOwner,
                               caption: caption,
                               numberOfLikes:

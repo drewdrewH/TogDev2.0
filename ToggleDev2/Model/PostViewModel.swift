@@ -12,7 +12,7 @@ class PostViewModel: ObservableObject {
     
     //here we call API to get posts data, for now it's hard coded. The Post() struct is created under Model section
     init () {
-        DataManager().queryPosts() { ps in
+        DataManager().getAllPosts() { ps in
             self.posts = ps
         }
         let _ = print("Posts: \(self.posts)")
