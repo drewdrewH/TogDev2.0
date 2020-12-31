@@ -38,10 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Failed to initialize Amplify with \(error)")
         }
+        
+        //DataManager().clearLocalData()
+        /*
         let user = User(name: "James")
         let post = Post(postOwner: user, caption: "hello there", numberOfLikes: 10, status: PostStatus.active, comments: [])
         DataManager().createUser(user: user)
         DataManager().createPost(post: post)
+        */
         return true
     }
 

@@ -7,9 +7,9 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBOutlet weak var video: UIImageView!
     @IBAction func buttonTapped(_ sender: UIButton) {
-        
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.sourceType = .photoLibrary
         imagePickerVC.mediaTypes = ["public.movie"]
@@ -17,6 +17,9 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         present(imagePickerVC, animated: true)
     }
     
+    @IBAction func textInput(_ sender: Any) {
+        
+    }
     
     func imagePickerController( picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -63,6 +66,7 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
             
         }
     }
+    
     @IBAction func submitPost(_ sender: Any) {
     }
 }

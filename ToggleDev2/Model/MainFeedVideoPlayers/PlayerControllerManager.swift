@@ -51,6 +51,7 @@ class PlayerControllerManager: ObservableObject {
     
     public func replacePlayerItem(from currentPostID: String, to newPost: Post) {
         let vidUrl = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(newPost.id).mp4"
+        print("Vid Url: \(vidUrl)")
         let AVPlayerToUpdate = getUniquePlayer(postID: currentPostID)
         let asset = AVAsset(url: URL(string: vidUrl)!)
         let playerItem = AVPlayerItem(asset: asset)

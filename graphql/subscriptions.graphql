@@ -7,10 +7,15 @@ subscription OnCreatePost {
       name
       posts {
         nextToken
+        startedAt
       }
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -21,11 +26,18 @@ subscription OnCreatePost {
       items {
         id
         content
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -38,10 +50,15 @@ subscription OnUpdatePost {
       name
       posts {
         nextToken
+        startedAt
       }
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -52,11 +69,18 @@ subscription OnUpdatePost {
       items {
         id
         content
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -69,10 +93,15 @@ subscription OnDeletePost {
       name
       posts {
         nextToken
+        startedAt
       }
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -83,11 +112,18 @@ subscription OnDeletePost {
       items {
         id
         content
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -102,20 +138,31 @@ subscription OnCreateUser {
         caption
         numberOfLikes
         status
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
     comments {
       items {
         id
         content
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -130,20 +177,31 @@ subscription OnUpdateUser {
         caption
         numberOfLikes
         status
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
     comments {
       items {
         id
         content
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -158,20 +216,31 @@ subscription OnDeleteUser {
         caption
         numberOfLikes
         status
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
     comments {
       items {
         id
         content
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -185,10 +254,15 @@ subscription OnCreateComment {
       name
       posts {
         nextToken
+        startedAt
       }
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -197,6 +271,9 @@ subscription OnCreateComment {
       postOwner {
         id
         name
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -205,10 +282,17 @@ subscription OnCreateComment {
       status
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -222,10 +306,15 @@ subscription OnUpdateComment {
       name
       posts {
         nextToken
+        startedAt
       }
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -234,6 +323,9 @@ subscription OnUpdateComment {
       postOwner {
         id
         name
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -242,10 +334,17 @@ subscription OnUpdateComment {
       status
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -259,10 +358,15 @@ subscription OnDeleteComment {
       name
       posts {
         nextToken
+        startedAt
       }
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -271,6 +375,9 @@ subscription OnDeleteComment {
       postOwner {
         id
         name
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -279,10 +386,17 @@ subscription OnDeleteComment {
       status
       comments {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
