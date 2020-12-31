@@ -1,8 +1,8 @@
 {
-  "projectName": "TogDev2",
-  "version": "3.0",
-  "frontend": "ios",
   "providers": [
     "awscloudformation"
-  ]
+  ],
+  "projectName": "TogDev2",
+  "version": "3.0",
+  "frontend": "ios"
 }
