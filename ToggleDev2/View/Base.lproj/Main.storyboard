@@ -977,23 +977,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-aM-IEE">
-                                <rect key="frame" x="6" y="9" width="403" height="327"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-aM-IEE">
+                                <rect key="frame" x="164" y="0.0" width="144" height="328"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="328" id="OWp-M1-YuY"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-nk-1ac">
-                                <rect key="frame" x="184" y="376" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-nk-1ac" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
+                                <rect key="frame" x="182" y="367" width="50" height="22"/>
+                                <state key="normal" title=" ">
+                                    <imageReference key="image" image="arrow.up.right.video.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonTapped:" destination="gfN-Ep-R1F" eventType="touchUpInside" id="7Qn-AM-zOd"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="U9O-Az-WVX">
+                                <rect key="frame" x="20" y="413" width="374" height="28.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVi-nh-KfS">
+                                        <rect key="frame" x="0.0" y="0.0" width="347" height="28.5"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-nt-Xx9" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
+                                        <rect key="frame" x="348" y="-2" width="26" height="33"/>
+                                        <state key="normal" title=" ">
+                                            <imageReference key="backgroundImage" image="paperplane.fill" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitPost:" destination="gfN-Ep-R1F" eventType="touchUpInside" id="FWo-7k-k3X"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="frc-jc-MkU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="U9O-Az-WVX" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="20" id="Npv-rR-d1d"/>
+                            <constraint firstItem="Ccc-nk-1ac" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="182" id="Nu2-gA-GXW"/>
+                            <constraint firstItem="pXb-aM-IEE" firstAttribute="top" secondItem="frc-jc-MkU" secondAttribute="top" id="V9y-Gs-8lR"/>
+                            <constraint firstItem="Ccc-nk-1ac" firstAttribute="top" secondItem="pXb-aM-IEE" secondAttribute="bottom" constant="39" id="coy-gK-7gh"/>
+                            <constraint firstItem="Ccc-nk-1ac" firstAttribute="centerX" secondItem="M3X-xx-L2r" secondAttribute="centerX" id="n7p-ac-Dio"/>
+                            <constraint firstItem="frc-jc-MkU" firstAttribute="trailing" secondItem="U9O-Az-WVX" secondAttribute="trailing" constant="20" id="nxm-Od-W8k"/>
+                            <constraint firstItem="U9O-Az-WVX" firstAttribute="top" secondItem="Ccc-nk-1ac" secondAttribute="bottom" constant="24" id="pdk-kJ-bhI"/>
+                            <constraint firstItem="pXb-aM-IEE" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="164" id="uhL-eS-HPQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lBK-R7-lyD"/>
+                    <connections>
+                        <outlet property="video" destination="pXb-aM-IEE" id="T0U-Fp-1vh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldk-uz-9eH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1111,6 +1148,7 @@
     <color key="tintColor" red="0.25882352939999997" green="0.87058823529999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="AppLogo" width="144" height="32"/>
+        <image name="arrow.up.right.video.fill" catalog="system" width="128" height="82"/>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="delete.left.fill" catalog="system" width="128" height="104"/>
@@ -1120,6 +1158,7 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="message" catalog="system" width="128" height="113"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
