@@ -14,7 +14,7 @@ class HomeFeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - variables
-    private var posts = [OGPost]()
+    private var posts = [Post]()
     private let playerManager = PlayerControllerManager()
     private var visibleCells = [IndexPath : CGFloat]()
     private var currentPlayingCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
@@ -60,7 +60,8 @@ class HomeFeedVC: UIViewController {
         let dataModel = PostViewModel()
         for post in dataModel.posts {
             self.posts.append(post)
-            thumbnailManager.previewImageFromVideo(url: URL(string: post.videoURL)! as NSURL)
+            let url = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(post.id).mp4"
+            thumbnailManager.previewImageFromVideo(url: URL(string: url)! as NSURL)
             self.postIsLiked.append(false)
         }
         

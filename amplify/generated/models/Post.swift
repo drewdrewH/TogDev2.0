@@ -4,23 +4,23 @@ import Foundation
 
 public struct Post: Model {
   public let id: String
-  public var postOwner: String
+  public var postOwner: User
   public var caption: String
   public var numberOfLikes: Int
-  public var videoUrl: String
+  public var status: PostStatus
   public var comments: List<Comment>?
   
   public init(id: String = UUID().uuidString,
-      postOwner: String,
+      postOwner: User,
       caption: String,
       numberOfLikes: Int,
-      videoUrl: String,
+      status: PostStatus,
       comments: List<Comment>? = []) {
       self.id = id
       self.postOwner = postOwner
       self.caption = caption
       self.numberOfLikes = numberOfLikes
-      self.videoUrl = videoUrl
+      self.status = status
       self.comments = comments
   }
 }

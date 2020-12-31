@@ -1,16 +1,27 @@
+enum PostStatus {
+  ACTIVE
+  INACTIVE
+}
 
 type Post @model {
   id: ID!
-  postOwner: String!
+  postOwner: User! @connection(name: "PostOwner")
   caption: String!
   numberOfLikes: Int!
-  videoUrl: String!
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  status: PostStatus!
+  comments: [Comment] @connection(name: "PostComments")
 }
 
-type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+type User @model {
   id: ID!
-  postID: ID!
-  post: Post @connection(fields: ["postID"])
+  name: String!
+  posts: [Post] @connection(name: "PostOwner")
+  comments: [Comment] @connection(name: "CommentOwner")
+}
+
+type Comment @model {
+  id: ID!
   content: String!
+  owner: User! @connection(name: "CommentOwner")
+  post: Post @connection(name: "PostComments")
 }

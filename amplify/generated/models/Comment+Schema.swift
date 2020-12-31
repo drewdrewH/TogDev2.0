@@ -6,8 +6,9 @@ extension Comment {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case id
-    case post
     case content
+    case owner
+    case post
   }
   
   public static let keys = CodingKeys.self
@@ -20,8 +21,9 @@ extension Comment {
     
     model.fields(
       .id(),
-      .belongsTo(comment.post, is: .optional, ofType: Post.self, targetName: "postID"),
-      .field(comment.content, is: .required, ofType: .string)
+      .field(comment.content, is: .required, ofType: .string),
+      .belongsTo(comment.owner, is: .required, ofType: User.self, targetName: "commentOwnerId"),
+      .belongsTo(comment.post, is: .optional, ofType: Post.self, targetName: "commentPostId")
     )
     }
 }

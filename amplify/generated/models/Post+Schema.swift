@@ -9,7 +9,7 @@ extension Post {
     case postOwner
     case caption
     case numberOfLikes
-    case videoUrl
+    case status
     case comments
   }
   
@@ -23,10 +23,10 @@ extension Post {
     
     model.fields(
       .id(),
-      .field(post.postOwner, is: .required, ofType: .string),
+      .belongsTo(post.postOwner, is: .required, ofType: User.self, targetName: "postPostOwnerId"),
       .field(post.caption, is: .required, ofType: .string),
       .field(post.numberOfLikes, is: .required, ofType: .int),
-      .field(post.videoUrl, is: .required, ofType: .string),
+      .field(post.status, is: .required, ofType: .enum(type: PostStatus.self)),
       .hasMany(post.comments, is: .optional, ofType: Comment.self, associatedWith: Comment.keys.post)
     )
     }
