@@ -29,7 +29,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var userNameBorder: UIView!
     @IBOutlet weak var passwordBorder: UIView!
     //MARK: - view life cycle
-    
+    private let sessionManager = SessionManager()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
@@ -56,6 +56,9 @@ class LoginVC: UIViewController {
     
     @IBAction func loginTapped(_ sender: Any) {
         dismissKeyboard()
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        sessionManager.signIn(username: username, password: password)
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {

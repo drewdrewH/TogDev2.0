@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Amplify
 
 class HomeFeedVC: UIViewController {
         
@@ -39,6 +40,7 @@ class HomeFeedVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         playInitialCell()
+        print(Amplify.Auth.getCurrentUser() ?? "")
     }
     
     override func viewDidDisappear(_ animated: Bool) {

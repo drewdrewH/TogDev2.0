@@ -4,13 +4,11 @@ import AVKit
 
 class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var videoURL: URL?
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     @IBOutlet weak var video: UIImageView!
-    @IBAction func buttonTapped( sender: UIButton) {
+    @IBAction func buttonTapped(_ sender: UIButton) {
         
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.sourceType = .photoLibrary
