@@ -977,12 +977,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-aM-IEE">
-                                <rect key="frame" x="164" y="0.0" width="144" height="328"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="328" id="OWp-M1-YuY"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-nk-1ac" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
                                 <rect key="frame" x="182" y="367" width="50" height="22"/>
                                 <state key="normal" title=" ">
@@ -994,16 +988,17 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="U9O-Az-WVX">
-                                <rect key="frame" x="20" y="413" width="374" height="28.5"/>
+                                <rect key="frame" x="20" y="413" width="374" height="34"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVi-nh-KfS">
-                                        <rect key="frame" x="0.0" y="0.0" width="347" height="28.5"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVi-nh-KfS">
+                                        <rect key="frame" x="0.0" y="0.0" width="347" height="34"/>
+                                        <color key="backgroundColor" red="0.089277040160000001" green="0.08798704634" blue="0.085598270480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-nt-Xx9" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
-                                        <rect key="frame" x="348" y="-2" width="26" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-nt-Xx9" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
+                                        <rect key="frame" x="348" y="-2" width="26" height="38.5"/>
                                         <state key="normal" title=" ">
                                             <imageReference key="backgroundImage" image="paperplane.fill" catalog="system" symbolScale="large"/>
                                         </state>
@@ -1013,10 +1008,18 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-aM-IEE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="328"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="328" id="OWp-M1-YuY"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="frc-jc-MkU"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="pXb-aM-IEE" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" id="7Sv-PD-b6r"/>
+                            <constraint firstItem="pXb-aM-IEE" firstAttribute="centerX" secondItem="Ccc-nk-1ac" secondAttribute="centerX" id="K5z-ZV-eyL"/>
                             <constraint firstItem="U9O-Az-WVX" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="20" id="Npv-rR-d1d"/>
                             <constraint firstItem="Ccc-nk-1ac" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="182" id="Nu2-gA-GXW"/>
                             <constraint firstItem="pXb-aM-IEE" firstAttribute="top" secondItem="frc-jc-MkU" secondAttribute="top" id="V9y-Gs-8lR"/>
@@ -1024,7 +1027,6 @@
                             <constraint firstItem="Ccc-nk-1ac" firstAttribute="centerX" secondItem="M3X-xx-L2r" secondAttribute="centerX" id="n7p-ac-Dio"/>
                             <constraint firstItem="frc-jc-MkU" firstAttribute="trailing" secondItem="U9O-Az-WVX" secondAttribute="trailing" constant="20" id="nxm-Od-W8k"/>
                             <constraint firstItem="U9O-Az-WVX" firstAttribute="top" secondItem="Ccc-nk-1ac" secondAttribute="bottom" constant="24" id="pdk-kJ-bhI"/>
-                            <constraint firstItem="pXb-aM-IEE" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="164" id="uhL-eS-HPQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lBK-R7-lyD"/>
