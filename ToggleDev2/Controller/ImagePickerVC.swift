@@ -21,7 +21,7 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         
     }
     
-    func imagePickerController( picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         // do someting...
         picker.dismiss(animated: true, completion: nil)
@@ -52,7 +52,7 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         }
         
         // create thumbnail for view page for form
-        let asset = AVAsset(url: videoURL!)
+        let asset = AVAsset(url: (info[.mediaURL] as? URL)!)
         let assetImageGenerator = AVAssetImageGenerator(asset: asset)
         
         var time = asset.duration
