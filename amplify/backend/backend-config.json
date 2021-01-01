@@ -36,5 +36,12 @@
         }
       }
     }
+  },
+  "video": {
+    "userVideos": {
+      "service": "video",
+      "serviceType": "video-on-demand",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }
