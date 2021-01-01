@@ -14,10 +14,26 @@
             filePath = "ToggleDev2/Controller/ImagePickerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "ImagePickerVC"
-            landmarkType = "3">
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C521980-1107-46D1-945F-C68D7D07C8A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToggleDev2/Controller/ImagePickerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

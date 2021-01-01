@@ -1,11 +1,15 @@
 import Foundation
 import UIKit
 import AVKit
+import Amplify
 
 class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var videoURL: URL?
+    var user: String?
+    var caption: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.user = Amplify.Auth.getCurrentUser()?.username
     }
     
     @IBOutlet weak var video: UIImageView!
@@ -18,9 +22,14 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         present(imagePickerVC, animated: true)
     }
     
+    
+    @IBOutlet var textField: UITextField!
+    
     @IBAction func textInput(_ sender: Any) {
-        
+        self.caption = textField.text
+        print(self.caption ?? "no caption")
     }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("imagePickerController")
@@ -60,10 +69,11 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func submitPost(_ sender: Any) {
-        // TODO: move code form ImagePickerController to a backend function then create the new post here using state variables.
-        // make a post and upload the video.
-        let user = User(name: "James")
-        let post = Post(postOwner: user, caption: "Ok, this is epic.", status: PostStatus.active)
+        // self.caption = caption , self.user = username
+        let user = User(name: self.user! )
+        let caption = self.caption ?? "caption not working"
+        //let comment = Comment
+        let post = Post(postOwner: user, caption: caption, numberOfLikes: 0, status: PostStatus.active)
         let videoManager = VideoManager()
         let dataManager = DataManager()
         if self.videoURL == nil {
@@ -75,3 +85,5 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
         }
     }
 }
+    
+

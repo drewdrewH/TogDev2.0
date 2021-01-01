@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
          //configure amplify
         do {
+            
             let models = AmplifyModels()
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: models))
@@ -34,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try Amplify.add(plugin: AWSS3StoragePlugin())
             
             try Amplify.configure()
+            
             print("Amplify configured with auth plugin")
         } catch {
             print("Failed to initialize Amplify with \(error)")
