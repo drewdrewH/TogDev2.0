@@ -1,6 +1,12 @@
 Podfile~
 Podfile.lock
 Pods/*
+*~
+ToggleDev2.xcworkspace/*
+ToggleDev2.xcodeproj/*
+.DS_Store
+.gitignore.swp
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
