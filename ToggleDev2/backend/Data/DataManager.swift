@@ -45,7 +45,7 @@ class DataManager {
                 print("Got failed event with error \(error)")
             }
         }
-
+        
     }
     
     func getPostComments(post: Post, completion:@escaping (List<Comment>?) -> ()) {
@@ -70,47 +70,50 @@ class DataManager {
     }
     
     
-    func createPost(postOwner: User, caption: String, numberOfLikes: Int) {
-        let post: Post = Post(postOwner: postOwner,
-                              caption: caption,
-                              numberOfLikes:
-                                numberOfLikes,
-                              status: PostStatus.active)
-        createPost(post: post)
-    }
-    
     func createPost(post: Post) {
-        Amplify.API.mutate(request: .create(post)) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let post):
-                    print("Successfully created post: \(post)")
-                case .failure(let graphQLError):
-                    print("Failed to create graphql \(graphQLError)")
-                }
-            case .failure(let apiError):
-                print("Failed to create a post", apiError)
+        Amplify.DataStore.save(post) { result in
+            switch result {
+            case .success:
+                print("Post saved successfully!")
+            case .failure(let error):
+                print("Error saving post \(error)")
             }
+            
         }
     }
     
     func createUser(user: User) {
-        Amplify.API.mutate(request: .create(user)) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let user):
-                    print("Successfully created user: \(user)")
-                case .failure(let graphQLError):
-                    print("Failed to create graphql \(graphQLError)")
-                }
-            case .failure(let apiError):
-                print("Failed to create a post", apiError)
+        Amplify.DataStore.save(user) { result in
+            switch result {
+            case .success:
+                print("Post saved successfully!")
+            case .failure(let error):
+                print("Error saving post \(error)")
             }
         }
     }
     
+    /*
+     Get the user associated with the given username.
+     */
+    func getUser(username: String, completion:@escaping ([User]) -> ()) {
+        print("Getting user \(username)")
+        let predicate = User.keys.name == username
+        Amplify.API.query(request: .list(User.self, where: predicate)) { event in
+            switch event {
+            case .success(let result):
+                switch result {
+                case .success(let user):
+                    print("Retrieved users \(user) with username: \(username)")
+                    completion(user)
+                case .failure(let error):
+                    print("Got failed result with \(error.errorDescription)")
+                }
+            case .failure(let error):
+                print("Got failed event with error \(error)")
+            }
+        }
+    }
     
     /*
      Upload the given filename key. Assumes the file is in the document root of the application.
@@ -136,47 +139,6 @@ class DataManager {
         )
     }
     
-    /*
-     Upload raw data to amplify. Probably won't ever be used in favor of file upload.
-     */
-    func uploadData(key: String, data: Data) {
-        Amplify
-            .Storage
-            .uploadData(key: "ExampleKey", data: data,
-                        progressListener: { progress in
-                            print("Progress: \(progress)")
-                        }, resultListener: { (event) in
-                            switch event {
-                            case .success(let data):
-                                print("Completed: \(data)")
-                            case .failure(let storageError):
-                                print("Failed: \(storageError.errorDescription). \(storageError.recoverySuggestion)")
-                            }
-                        })
-    }
-    
-    /*
-     Get the S3 URL of the fileKey if it exists, or the error image if it doesn't exist.
-     */
-    func getURL(fileKey: String, completionHandler:@escaping(URL) -> ()) {
-        self.getS3URL(fileKey: fileKey) { url in
-            // convert the url to string, or if error send the error image.
-            if url.absoluteString != "" {
-                completionHandler(url)
-            }
-        }
-    }
-    
-    func getS3URL(fileKey: String, completionHandler:@escaping(URL) -> ()) {
-        Amplify.Storage.getURL(key: fileKey) { event in
-            switch event {
-            case let .success(url):
-                completionHandler(url)
-            case let .failure(storageError):
-                print("S3URL: Failed: \(storageError.errorDescription). \(storageError.recoverySuggestion)")
-            }
-        }
-    }
     
     func clearLocalData() {
         Amplify.DataStore.clear { result in
@@ -188,7 +150,4 @@ class DataManager {
             }
         }
     }
-    
-    
-    
 }

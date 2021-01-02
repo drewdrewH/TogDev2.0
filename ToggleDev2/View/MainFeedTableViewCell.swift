@@ -50,6 +50,7 @@ class MainFeedTableViewCell: UITableViewCell {
     
     
     func configure(with post: Post) {
+        //DataManager().clearLocalData()
         let thumbnailManager = ThumbnailManager()
         usernameLabel.text = post.postOwner.name
         numberOfLikes.text = "\(post.numberOfLikes) Likes"

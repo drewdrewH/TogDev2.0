@@ -5,15 +5,17 @@ import Amplify
 
 class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var videoURL: URL?
-    var user: String?
+    var username: String?
+    var user: User?
     var caption: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.user = Amplify.Auth.getCurrentUser()?.username
+        print("Current User obj: \(Amplify.Auth.getCurrentUser()!)")
+        self.username = Amplify.Auth.getCurrentUser()?.username
     }
     
     @IBOutlet weak var video: UIImageView!
-    
     @IBAction func buttonTapped(_ sender: UIButton) {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.sourceType = .photoLibrary
@@ -24,10 +26,9 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     
     
     @IBOutlet var textField: UITextField!
-    
     @IBAction func textInput(_ sender: Any) {
         self.caption = textField.text
-        print(self.caption ?? "no caption")
+        print("Read Caption: \(self.caption ?? "no caption")")
     }
     
     
@@ -69,19 +70,26 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func submitPost(_ sender: Any) {
-        // self.caption = caption , self.user = username
-        let user = User(name: self.user! )
-        let caption = self.caption ?? "caption not working"
-        //let comment = Comment
-        let post = Post(postOwner: user, caption: caption, numberOfLikes: 0, status: PostStatus.active)
-        let videoManager = VideoManager()
+        //let videoManager = VideoManager()
         let dataManager = DataManager()
-        if self.videoURL == nil {
-            print("Video Url is nil. Not uploading or creating post.")
-        } else {
-            videoManager.uploadVideo(url: self.videoURL!, id: post.id)
-            dataManager.createUser(user: user)
-            dataManager.createPost(post: post)
+        
+        dataManager.getUser(username: self.username!) { user in
+            if user.isEmpty {
+                // then create the user
+                self.user = User(name: self.username!)
+                dataManager.createUser(user: self.user!)
+            } else {
+                self.user = user[0]
+            }
+            let caption = self.caption ?? "caption not working"
+            let post = Post(postOwner: self.user!, caption: caption, numberOfLikes: 0, status: PostStatus.active)
+            print("Submitting \(post) for user \(user)")
+            if self.videoURL == nil {
+                print("Video Url is nil. Not uploading or creating post.")
+            } else {
+                //videoManager.uploadVideo(url: self.videoURL!, id: post.id)
+                dataManager.createPost(post: post)
+            }
         }
     }
 }
