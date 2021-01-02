@@ -17,7 +17,10 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     @IBAction func buttonTapped(_ sender: UIButton) {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.sourceType = .photoLibrary
+        imagePickerVC.allowsEditing = true
+        imagePickerVC.videoMaximumDuration = 60.0
         imagePickerVC.mediaTypes = ["public.movie"]
+        
         imagePickerVC.delegate = self
         present(imagePickerVC, animated: true)
     }
@@ -25,14 +28,11 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet var textField: UITextField!
     
-    @IBAction func textInput(_ sender: Any) {
-        self.caption = textField.text
-        print(self.caption ?? "no caption")
-    }
+    
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("imagePickerController")
+        
         // do someting...
         picker.dismiss(animated: true, completion: nil)
         if let url = info[.mediaURL] as? URL {
@@ -70,19 +70,21 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     
     @IBAction func submitPost(_ sender: Any) {
         // self.caption = caption , self.user = username
+        self.caption = textField.text
         let user = User(name: self.user! )
-        let caption = self.caption ?? "caption not working"
+        let caption = self.caption ?? " "
         //let comment = Comment
         let post = Post(postOwner: user, caption: caption, numberOfLikes: 0, status: PostStatus.active)
         let videoManager = VideoManager()
         let dataManager = DataManager()
         if self.videoURL == nil {
-            print("Video Url is nil. Not uploading or creating post.")
+            print("Video is nil. Not uploading or creating post.")
         } else {
             videoManager.uploadVideo(url: self.videoURL!, id: post.id)
             dataManager.createUser(user: user)
             dataManager.createPost(post: post)
         }
+        navigationController?.popViewController(animated: true)
     }
 }
     

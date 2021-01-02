@@ -30,6 +30,7 @@ class HomeFeedVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+       
         super.viewWillAppear(animated)
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBar.barTintColor = .black
@@ -41,6 +42,7 @@ class HomeFeedVC: UIViewController {
         super.viewDidAppear(animated)
         playInitialCell()
         print(Amplify.Auth.getCurrentUser() ?? "")
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
