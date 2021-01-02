@@ -7,47 +7,16 @@
 
 import UIKit
 import CoreData
-import AVKit
-import Amplify
-import AmplifyPlugins
-import Combine
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-   // @ var sessionManager = SessionManager()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //configure audio
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(.playback, mode: .moviePlayback)
-        }
-        catch {
-            print("Setting category to AVAudioSessionCategoryPlayback failed.")
-        }
-         //configure amplify
-        do {
-            
-            let models = AmplifyModels()
-            try Amplify.add(plugin: AWSCognitoAuthPlugin())
-            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: models))
-            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: models))
-            try Amplify.add(plugin: AWSS3StoragePlugin())
-            
-            try Amplify.configure()
-            
-            print("Amplify configured with auth plugin")
-        } catch {
-            print("Failed to initialize Amplify with \(error)")
-        }
-        
-        //DataManager().clearLocalData()
-        /*
-        let user = User(name: "James")
-        let post = Post(postOwner: user, caption: "hello there", numberOfLikes: 10, status: PostStatus.active, comments: [])
-        DataManager().createUser(user: user)
-        DataManager().createPost(post: post)
-        */
+
+        let appConfigurations = AppConfigurations()
+        appConfigurations.configureAmplify()
+        appConfigurations.configureAudio()
+        appConfigurations.listenToAuthState()
         return true
     }
 

@@ -25,8 +25,9 @@
 		01309674259413BA00720A8A /* customButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01309673259413BA00720A8A /* customButtons.swift */; };
 		0130967C259419F100720A8A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130967B259419F100720A8A /* CustomTextField.swift */; };
 		013096AC25943AB500720A8A /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013096AB25943AB500720A8A /* SignUpVC.swift */; };
+		017E1BD825A02B5F006753B8 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E1BD725A02B5F006753B8 /* CommentsViewModel.swift */; };
 		018D7D4D259A92BD002F5E83 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D7D4C259A92BD002F5E83 /* CommentsVC.swift */; };
-		01F5F971259A7F5D00871E16 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F5F970259A7F5D00871E16 /* CommentsViewModel.swift */; };
+		01BF9298259FDB3100A0627B /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF9297259FDB3100A0627B /* AppConfigurations.swift */; };
 		01F5F982259A887D00871E16 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F5F981259A887D00871E16 /* CommentTableViewCell.swift */; };
 		033A2E6F5D4C447C8200DCAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B1D886F2048D391E45373 /* User.swift */; };
 		0C64924766AD452C8EBE78C4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E265C20374523BBA01FB9 /* Comment.swift */; };
@@ -69,8 +70,9 @@
 		01309673259413BA00720A8A /* customButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customButtons.swift; sourceTree = "<group>"; };
 		0130967B259419F100720A8A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		013096AB25943AB500720A8A /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		017E1BD725A02B5F006753B8 /* CommentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 		018D7D4C259A92BD002F5E83 /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
-		01F5F970259A7F5D00871E16 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
+		01BF9297259FDB3100A0627B /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
 		01F5F981259A887D00871E16 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		048E265C20374523BBA01FB9 /* Comment.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = amplify/generated/models/Comment.swift; sourceTree = "<group>"; };
 		23D79DD9259B16C800EB0DFF /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				62B1B6F1259DA09E00DF8A84 /* Data */,
+				1CEAD466D18041A5A7F01B45 /* AmplifyConfig */,
 				23D79DD8259B168100EB0DFF /* Authentication */,
 			);
 			path = backend;
@@ -130,8 +133,6 @@
 		0130964B2593FE3E00720A8A = {
 			isa = PBXGroup;
 			children = (
-				264F0CBF17FB4981AC20F146 /* AmplifyModels */,
-				1CEAD466D18041A5A7F01B45 /* AmplifyConfig */,
 				013096562593FE3E00720A8A /* ToggleDev2 */,
 				013096552593FE3E00720A8A /* Products */,
 				3916B45BDCD38AE23CC6F090 /* Pods */,
@@ -165,9 +166,10 @@
 		0130966F2594133B00720A8A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				264F0CBF17FB4981AC20F146 /* AmplifyModels */,
 				0130265C259720210096D62A /* MainFeedVideoPlayers */,
 				013026332596D4770096D62A /* PostViewModel.swift */,
-				01F5F970259A7F5D00871E16 /* CommentsViewModel.swift */,
+				017E1BD725A02B5F006753B8 /* CommentsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +206,7 @@
 			children = (
 				013096572593FE3E00720A8A /* AppDelegate.swift */,
 				013096592593FE3E00720A8A /* SceneDelegate.swift */,
+				01BF9297259FDB3100A0627B /* AppConfigurations.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 				2C31BD64835343F9A0912DC4 /* schema.graphql */,
 			);
 			name = AmplifyConfig;
-			path = .;
+			path = ../../.;
 			sourceTree = "<group>";
 		};
 		23D79DD8259B168100EB0DFF /* Authentication */ = {
@@ -244,7 +247,7 @@
 				E807A30D6AC142438FB1A925 /* User+Schema.swift */,
 			);
 			name = AmplifyModels;
-			path = .;
+			path = ../../.;
 			sourceTree = "<group>";
 		};
 		34A9E24BBE196906345205B1 /* Frameworks */ = {
@@ -395,7 +398,6 @@
 				01302660259720760096D62A /* PlayerControllerManager.swift in Sources */,
 				01236ED22595D23A00B162C7 /* HomeFeedVC.swift in Sources */,
 				0130262D2596B6130096D62A /* MainFeedTableViewCell.swift in Sources */,
-				01F5F971259A7F5D00871E16 /* CommentsViewModel.swift in Sources */,
 				23D79DDE259B175E00EB0DFF /* currentSessionInfo.swift in Sources */,
 				012FB3D825948E570076ECCA /* ConfirmationVC.swift in Sources */,
 				013096AC25943AB500720A8A /* SignUpVC.swift in Sources */,
@@ -406,6 +408,7 @@
 				01302663259738B80096D62A /* ThumbnailManager.swift in Sources */,
 				01F5F982259A887D00871E16 /* CommentTableViewCell.swift in Sources */,
 				23D79DDA259B16C800EB0DFF /* SessionManager.swift in Sources */,
+				017E1BD825A02B5F006753B8 /* CommentsViewModel.swift in Sources */,
 				013096582593FE3E00720A8A /* AppDelegate.swift in Sources */,
 				013096622593FE3E00720A8A /* ToggleDev2.xcdatamodeld in Sources */,
 				0130965A2593FE3E00720A8A /* SceneDelegate.swift in Sources */,
@@ -422,6 +425,7 @@
 				033A2E6F5D4C447C8200DCAD /* User.swift in Sources */,
 				B3DB1EE876614133A8F3BFEB /* User+Schema.swift in Sources */,
 				62B1B6F6259DA36500DF8A84 /* VideoManager.swift in Sources */,
+				01BF9298259FDB3100A0627B /* AppConfigurations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

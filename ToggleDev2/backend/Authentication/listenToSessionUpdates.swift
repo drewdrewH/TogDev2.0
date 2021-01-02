@@ -12,29 +12,38 @@ import AmplifyPlugins
 class listenToSessionUpdates {
     
     // this should not be type optional probably, will figure out later.
-    var unsubscribeToken: UnsubscribeToken? = nil;
+    private var unsubscribeToken: UnsubscribeToken? = nil;
     
-    /*
-     * this function listens to any changes that occur within .auth such as logout, login
-     * or session expiration and should execute code accordingly.
-     */
     func listenToUpdates() {
         unsubscribeToken = Amplify.Hub.listen(to: .auth) { payload in
             switch payload.eventName {
             case HubPayload.EventName.Auth.signedIn:
-                print("User signed in")
-                // Update UI
+                self.makeRootView(storyboardID: "HomeFeedScreen")
+                print("User signed in (from listener)")
+                
 
             case HubPayload.EventName.Auth.sessionExpired:
-                print("Session expired")
+                self.makeRootView(storyboardID: "LoginScreen")
+                print("Session expired (from listener)")
                 // Re-authenticate the user
 
             case HubPayload.EventName.Auth.signedOut:
-                print("User signed out")
-                // Update UI
+                self.makeRootView(storyboardID: "LoginScreen")
+                print("User signed out (from listener)")
 
             default:
                 break
+            }
+        }
+    }
+    
+    private func makeRootView(storyboardID: String) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        DispatchQueue.main.async {
+            let viewController = mainStoryboard.instantiateViewController(withIdentifier: storyboardID)
+            UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseIn) {
+                UIApplication.shared.windows.first?.rootViewController = viewController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
             }
         }
     }

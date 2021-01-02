@@ -28,8 +28,12 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginButton: RoundButton!
     @IBOutlet weak var userNameBorder: UIView!
     @IBOutlet weak var passwordBorder: UIView!
-    //MARK: - view life cycle
+    
+    
+    //MARK: - variables
     private let sessionManager = SessionManager()
+    
+    //MARK: - view life cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true

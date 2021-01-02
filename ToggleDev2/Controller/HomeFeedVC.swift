@@ -99,14 +99,10 @@ class HomeFeedVC: UIViewController {
             }
         }
     }
-}
     
-extension HomeFeedVC{
-// upload Button Clicked action
-    @objc func uploadButtonClicked() {
-          }
     @objc private func uploadButton() {
-        print("Test")
+        //let session = SessionManager()
+        //session.signOutLocally()
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imagePickerViewController") as? ImagePickerVC {
               if let navigator = navigationController {
                   navigator.pushViewController(viewController, animated: true)
@@ -114,7 +110,6 @@ extension HomeFeedVC{
           }
     }
 }
-
 
 
 //MARK: - table view delegate

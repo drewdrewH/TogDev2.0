@@ -10,10 +10,6 @@ import Amplify
 import AmplifyPlugins
 
 class currentSessionInfo {
-    /*
-     * check if there's a user currently signed In. If yes, return
-     * current session.
-     */
     func fetchCurrentAuthSession() {
         _ = Amplify.Auth.fetchAuthSession { result in
             switch result {
@@ -25,9 +21,6 @@ class currentSessionInfo {
         }
     }
     
-    /*
-     * get user attributes associated with the current session
-     */
     func fetchAttributes() {
         Amplify.Auth.fetchUserAttributes() { result in
             switch result {

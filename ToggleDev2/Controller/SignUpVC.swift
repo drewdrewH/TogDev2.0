@@ -34,12 +34,15 @@ class SignUpVC: UIViewController {
             confirmPasswordTextField.setPlaceHolder(for: confirmPasswordTextField, with: "Confirm Password")
         }
     }
-    
+        
     @IBOutlet weak var userNameBorder: UIView!
     @IBOutlet weak var emailBorder: UIView!
     @IBOutlet weak var passwordBorder: UIView!
     @IBOutlet weak var confirmPasswordBorder: UIView!
     
+    //MARK: - variables
+    private let sessionManager = SessionManager()
+        
     //MARK: - view life cycle
     
     override func viewDidLoad() {
@@ -57,7 +60,11 @@ class SignUpVC: UIViewController {
     
     @IBAction func signUpTapped(_ sender: Any) {
         dismissKeyboard()
-        performSegue(withIdentifier: "signUpToConfirmation", sender: self)
+        let username = userNameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        sessionManager.signUp(username: username, password: password, email: email)
+        //performSegue(withIdentifier: "signUpToConfirmation", sender: self)
 
     }
     @IBAction func backToLoginTapped(_ sender: Any) {
@@ -101,13 +108,13 @@ extension SignUpVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case userNameTextField:
-            userNameBorder.backgroundColor = .black
+            userNameBorder.backgroundColor = .white
         case emailTextField:
-            emailBorder.backgroundColor = .black
+            emailBorder.backgroundColor = .white
         case passwordTextField:
-            passwordBorder.backgroundColor = .black
+            passwordBorder.backgroundColor = .white
         default:
-            confirmPasswordBorder.backgroundColor = .black
+            confirmPasswordBorder.backgroundColor = .white
         }
     }
     

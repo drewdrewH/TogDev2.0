@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sqo-gI-3pe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IoY-jf-YRL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -210,6 +210,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-ML-Psn">
                                                 <rect key="frame" x="30" y="0.0" width="354" height="23"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
                                             </textField>
@@ -233,6 +234,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2z4-Yf-H9Q">
                                                 <rect key="frame" x="30" y="0.0" width="354" height="23"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                             </textField>
@@ -256,6 +258,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NLr-zM-C7n">
                                                 <rect key="frame" x="30" y="0.0" width="354" height="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
@@ -279,6 +282,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XBO-73-fyc">
                                                 <rect key="frame" x="30" y="0.0" width="354" height="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
@@ -642,7 +646,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cHi-bp-p57">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IoY-jf-YRL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginScreen" automaticallyAdjustsScrollViewInsets="NO" id="IoY-jf-YRL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pEc-mv-yB7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -860,7 +864,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KBA-f5-7MX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="735.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="715.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="secondarySystemBackgroundColor"/>
                                 <prototypes>
@@ -941,7 +945,7 @@
                             <constraint firstItem="KBA-f5-7MX" firstAttribute="leading" secondItem="9xo-MD-VKn" secondAttribute="leading" id="GqX-pq-8e3"/>
                             <constraint firstItem="KBA-f5-7MX" firstAttribute="top" secondItem="9xo-MD-VKn" secondAttribute="top" id="Hrp-z4-D7r"/>
                             <constraint firstAttribute="bottom" secondItem="SEV-b1-aq3" secondAttribute="bottom" id="ICT-Yz-U3W"/>
-                            <constraint firstItem="SEV-b1-aq3" firstAttribute="top" secondItem="KBA-f5-7MX" secondAttribute="bottom" id="Raf-O9-9nP"/>
+                            <constraint firstItem="SEV-b1-aq3" firstAttribute="top" secondItem="KBA-f5-7MX" secondAttribute="bottom" constant="20" id="Raf-O9-9nP"/>
                             <constraint firstItem="9xo-MD-VKn" firstAttribute="trailing" secondItem="SEV-b1-aq3" secondAttribute="trailing" id="SqX-Nf-XyQ"/>
                             <constraint firstItem="KBA-f5-7MX" firstAttribute="trailing" secondItem="9xo-MD-VKn" secondAttribute="trailing" id="TKb-0R-jOP"/>
                             <constraint firstItem="SEV-b1-aq3" firstAttribute="leading" secondItem="9xo-MD-VKn" secondAttribute="leading" id="qX7-95-PLV"/>
@@ -1096,7 +1100,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="QQ6-XF-XWf">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sqo-gI-3pe" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeFeedScreen" automaticallyAdjustsScrollViewInsets="NO" id="sqo-gI-3pe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="MNo-j9-w3E"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ng2-r7-yzp">

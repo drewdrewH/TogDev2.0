@@ -45,18 +45,9 @@ final class SessionManager: ObservableObject {
     }*/
     
     //MARK: - Sign Up
-    /*
-     @param: username (string)
-     @param: password (string)
-     @param: email (string)
-     */
     func signUp(username: String, password: String, email: String) {
-        if email == "" {
-            print("No Email Provided")
-            sendErrorToView("signup-error", "Please Enter Your Email")
-        } else if password.count < 8 {
-            print("Invalid password, must be at least 8 characters")
-            sendErrorToView("signup-error", "password must be at least 8 characters")
+        if(false) {
+            
         }
         else {
             let username = String(username.filter { !" \n\t\r".contains($0)}) // filter out white spaces
@@ -187,21 +178,6 @@ final class SessionManager: ObservableObject {
             case .failure(let error):
                 print("Sign out failed with error \(error)")
                 sendErrorToView("signout-locally-error", error.errorDescription)
-            }
-        }
-    }
-    
-    /*
-     * sign out from all devices associated with current user session (not using currently)
-     */
-    func signOutGlobally() {
-        Amplify.Auth.signOut(options: .init(globalSignOut: true)) { result in
-            switch result {
-            case .success:
-                print("Successfully signed out")
-            case .failure(let error):
-                print("Sign out failed with error \(error)")
-                sendErrorToView("signout-globally-error", error.errorDescription)
             }
         }
     }
