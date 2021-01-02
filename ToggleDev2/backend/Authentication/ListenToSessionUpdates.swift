@@ -9,7 +9,7 @@ import Foundation
 import Amplify
 import AmplifyPlugins
 
-class listenToSessionUpdates {
+class ListenToSessionUpdates {
     
     // this should not be type optional probably, will figure out later.
     private var unsubscribeToken: UnsubscribeToken? = nil;
@@ -18,17 +18,17 @@ class listenToSessionUpdates {
         unsubscribeToken = Amplify.Hub.listen(to: .auth) { payload in
             switch payload.eventName {
             case HubPayload.EventName.Auth.signedIn:
-                self.makeRootView(storyboardID: "HomeFeedScreen")
+                self.makeRootView(ViewControllerID: "HomeFeedScreen")
                 print("User signed in (from listener)")
                 
 
             case HubPayload.EventName.Auth.sessionExpired:
-                self.makeRootView(storyboardID: "LoginScreen")
+                self.makeRootView(ViewControllerID: "LoginScreen")
                 print("Session expired (from listener)")
                 // Re-authenticate the user
 
             case HubPayload.EventName.Auth.signedOut:
-                self.makeRootView(storyboardID: "LoginScreen")
+                self.makeRootView(ViewControllerID: "LoginScreen")
                 print("User signed out (from listener)")
 
             default:
@@ -37,14 +37,19 @@ class listenToSessionUpdates {
         }
     }
     
-    private func makeRootView(storyboardID: String) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    private func makeRootView(ViewControllerID: String) {
         DispatchQueue.main.async {
-            let viewController = mainStoryboard.instantiateViewController(withIdentifier: storyboardID)
-            UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseIn) {
-                UIApplication.shared.windows.first?.rootViewController = viewController
-                UIApplication.shared.windows.first?.makeKeyAndVisible()
+            guard let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else {
+                return
             }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerID)
+
+            window.rootViewController = vc
+            let options: UIView.AnimationOptions = .curveEaseInOut
+            let duration: TimeInterval = 0.5
+            UIView.transition(with: window, duration: duration, options: options, animations: {}, completion:
+            { _ in })
         }
     }
 }

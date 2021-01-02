@@ -9,18 +9,32 @@ import UIKit
 
 class ConfirmationVC: UIViewController {
 
+    //MARK: - IB Outlets
+    @IBOutlet weak var welcomeLabel: UILabel!
+    
     //MARK: - variables
     private var confirmationCode: [String] = []
+    let sessionManager = SessionManager()
+    var username = "User"
+    var password = "dummy"
+    
     
     //MARK: - view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        welcomeLabel.text = "Hello \(username)"
     }
     
     //MARK: - IB Actions
     @IBAction func resendCodeTapped(_ sender: UIButton) {
-        
+        sessionManager.resendSignUpConfirmationCode(username: username) {[weak self] (result) in
+            switch result {
+            case .success(let deliveryDetails):
+                self?.showSuccessMessage(successMessage: "an email was sent to \(deliveryDetails.destination)")
+            case .failure(let error):
+                self?.handleError(errorDescription: error.errorDescription)
+            }
+        }
     }
     
     @IBAction func numberTapped(_ sender: UIButton) {
@@ -36,10 +50,7 @@ class ConfirmationVC: UIViewController {
             
             if confirmationCode.count == 6 {
                 let codeInput = confirmationCode.joined()
-                
-                // pop view controller back 2 VCs (login screen)
-                self.popBack(3)
-                print("user finished inputting code \(codeInput)")
+                confirmUserCode(code: codeInput)
                 clearInput()
             }
         }
@@ -68,11 +79,28 @@ class ConfirmationVC: UIViewController {
         }
     }
     
-    func popBack(_ nb: Int) {
-        if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
-            guard viewControllers.count < nb else {
-                self.navigationController?.popToViewController(viewControllers[viewControllers.count - nb], animated: true)
-                return
+    private func confirmUserCode(code: String) {
+        sessionManager.confirmSignUp(for: username, with: code) {[weak self] (result) in
+            switch result {
+            case .success(let authSignUpResult):
+                if authSignUpResult.isSignupComplete {
+                    self?.signInUserAutomatically()
+                }
+            case .failure(let error):
+                self?.handleError(errorDescription: error.errorDescription)
+            }
+        }
+    }
+    
+    private func signInUserAutomatically() {
+        sessionManager.signIn(username: username, password: password) {[weak self] result in
+            switch result {
+            case .success(let authSignInResult):
+                if authSignInResult.isSignedIn {
+                    print("user is signed in")
+                }
+            case .failure(let error):
+                self?.handleError(errorDescription: error.errorDescription)
             }
         }
     }

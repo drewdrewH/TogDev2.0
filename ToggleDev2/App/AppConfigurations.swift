@@ -41,7 +41,7 @@ class AppConfigurations {
     
     //MARK: - Auth state
     func listenToAuthState() {
-        let sessionUpdates = listenToSessionUpdates()
+        let sessionUpdates = ListenToSessionUpdates()
         sessionUpdates.listenToUpdates()
     }
 }

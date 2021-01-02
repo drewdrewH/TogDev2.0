@@ -10,6 +10,7 @@ import Amplify
 import AmplifyPlugins
 
 class currentSessionInfo {
+    
     func fetchCurrentAuthSession() {
         _ = Amplify.Auth.fetchAuthSession { result in
             switch result {

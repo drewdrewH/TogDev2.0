@@ -78,7 +78,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="hba-YA-dVx">
-                                        <rect key="frame" x="0.0" y="87" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="130" width="414" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kkE-LO-taP">
                                                 <rect key="frame" x="30" y="0.0" width="354" height="22"/>
@@ -101,16 +101,6 @@
                                             <constraint firstItem="kkE-LO-taP" firstAttribute="leading" secondItem="hba-YA-dVx" secondAttribute="leading" constant="30" id="ulw-0n-2xJ"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLY-HX-D8p">
-                                        <rect key="frame" x="142.5" y="173" width="129" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="forgot password?">
-                                            <color key="titleColor" systemColor="linkColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="forgotpasswordTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PpV-Hz-YAs"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdR-8q-ZPD" customClass="RoundButton" customModule="ToggleDev2" customModuleProvider="target">
                                         <rect key="frame" x="30" y="259.5" width="354" height="50"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.87058823529999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -158,7 +148,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="ZAc-Lw-qlf"/>
                     <connections>
-                        <outlet property="forgotPasswordButton" destination="BLY-HX-D8p" id="gnY-wx-8EG"/>
                         <outlet property="loginButton" destination="qdR-8q-ZPD" id="2FR-Ew-CAb"/>
                         <outlet property="passwordBorder" destination="kk8-gy-HG6" id="kDo-05-ZAH"/>
                         <outlet property="passwordTextField" destination="kkE-LO-taP" id="0hD-5r-fRp"/>
@@ -371,6 +360,7 @@
                         <outlet property="emailTextField" destination="2z4-Yf-H9Q" id="j4Z-cy-V6O"/>
                         <outlet property="passwordBorder" destination="bJQ-gu-JwH" id="CbU-gp-LFk"/>
                         <outlet property="passwordTextField" destination="NLr-zM-C7n" id="Lkq-Tg-Z3q"/>
+                        <outlet property="signUpButton" destination="5Dx-Z0-9Su" id="Aq9-b2-hi9"/>
                         <outlet property="userNameBorder" destination="Uu5-Dd-bLB" id="UWM-v8-CY2"/>
                         <outlet property="userNameTextField" destination="ZpS-ML-Psn" id="YhS-9J-55F"/>
                         <segue destination="JUU-Vr-VQT" kind="show" identifier="signUpToConfirmation" id="Xvj-Ac-nRB"/>
@@ -388,7 +378,7 @@
         <!--ConfirmationVC-->
         <scene sceneID="CX1-vg-GHN">
             <objects>
-                <viewController id="JUU-Vr-VQT" customClass="ConfirmationVC" customModule="ToggleDev2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmationVC" id="JUU-Vr-VQT" customClass="ConfirmationVC" customModule="ToggleDev2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RCI-cv-8Iv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -637,6 +627,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="C2c-N0-aew"/>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="6qU-DW-vgA" id="9MK-EQ-fRC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbM-6K-0m8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ez1-SB-282" userLabel="Exit" sceneMemberID="exit"/>
@@ -971,7 +964,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1050.7246376811595" y="2215.8482142857142"/>
+            <point key="canvasLocation" x="112" y="2216"/>
         </scene>
         <!--Image PickerVC-->
         <scene sceneID="WFk-vL-00c">
@@ -1041,7 +1034,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldk-uz-9eH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050.7246376811595" y="2215.8482142857142"/>
+            <point key="canvasLocation" x="1051" y="2216"/>
         </scene>
         <!--Search-->
         <scene sceneID="6dt-KV-EMh">
@@ -1059,11 +1052,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezg-F4-gnj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1914.4000000000001" y="1471.92118226601"/>
+            <point key="canvasLocation" x="1933" y="1472"/>
         </scene>
         <!--Discover-->
         <scene sceneID="dY5-9K-mGk">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yim-33-vhF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="6vo-ji-Uwz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PMN-gC-SiW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -1075,27 +1069,38 @@
                         <imageReference key="image" image="gamecontroller" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yim-33-vhF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2735.1999999999998" y="1471.92118226601"/>
+            <point key="canvasLocation" x="2896" y="1472"/>
         </scene>
-        <!--Profile-->
+        <!--ProfileVC-->
         <scene sceneID="Dus-v6-Fbq">
             <objects>
-                <viewController id="yUh-uw-5me" sceneMemberID="viewController">
+                <viewController id="yUh-uw-5me" customClass="ProfileVC" customModule="ToggleDev2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yyn-Jy-5qb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ij-dc-D3N">
+                                <rect key="frame" x="161.5" y="424" width="91" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="yUh-uw-5me" eventType="touchUpInside" id="9SL-8T-nBs"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="NPX-9L-BCw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5ij-dc-D3N" firstAttribute="centerY" secondItem="yyn-Jy-5qb" secondAttribute="centerY" id="Sbo-x8-TQw"/>
+                            <constraint firstItem="5ij-dc-D3N" firstAttribute="centerX" secondItem="yyn-Jy-5qb" secondAttribute="centerX" id="kax-xx-WTe"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="c0E-lW-InI">
-                        <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="d2s-yO-GDz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pq2-hk-KJK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3516" y="1471.92118226601"/>
+            <point key="canvasLocation" x="4580" y="1472"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QQ6-XF-XWf">
@@ -1120,7 +1125,7 @@
                         <segue destination="FzG-sB-xna" kind="relationship" relationship="viewControllers" id="GHM-D7-Ijw"/>
                         <segue destination="JXf-6F-hVe" kind="relationship" relationship="viewControllers" id="h4H-Nz-9kA"/>
                         <segue destination="6vo-ji-Uwz" kind="relationship" relationship="viewControllers" id="UEP-Fj-ZqP"/>
-                        <segue destination="yUh-uw-5me" kind="relationship" relationship="viewControllers" id="s0E-WH-6EJ"/>
+                        <segue destination="eiq-qq-2sJ" kind="relationship" relationship="viewControllers" id="s0E-WH-6EJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZG-pn-aXu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1151,6 +1156,27 @@
             </objects>
             <point key="canvasLocation" x="109.59999999999999" y="1471.92118226601"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="N98-Av-dlF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eiq-qq-2sJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="c0E-lW-InI">
+                        <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="L3n-7F-wOt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yUh-uw-5me" kind="relationship" relationship="rootViewController" id="BNG-2U-FLM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CCh-1G-yy3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3764" y="1472"/>
+        </scene>
     </scenes>
     <color key="tintColor" red="0.25882352939999997" green="0.87058823529999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
@@ -1170,9 +1196,6 @@
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
