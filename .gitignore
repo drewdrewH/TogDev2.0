@@ -2,8 +2,6 @@ Podfile~
 Podfile.lock
 Pods/*
 *~
-ToggleDev2.xcworkspace/*
-ToggleDev2.xcodeproj/*
 .DS_Store
 .gitignore.swp
 
