@@ -101,13 +101,11 @@ class HomeFeedVC: UIViewController {
     }
     
     @objc private func uploadButton() {
-        //let session = SessionManager()
-        //session.signOutLocally()
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "imagePickerViewController") as? ImagePickerVC {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "localVideosCollectionView") as? LocalVideosCollectionViewVC {
               if let navigator = navigationController {
                   navigator.pushViewController(viewController, animated: true)
               }
-          }
+        }
     }
 }
 
