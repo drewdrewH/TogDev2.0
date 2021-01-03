@@ -5,11 +5,12 @@ import Amplify
 
 class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var videoURL: URL?
-    var user: String?
+    var user: User?
+    var username: String?
     var caption: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.user = Amplify.Auth.getCurrentUser()?.username
+        self.username = Amplify.Auth.getCurrentUser()?.username
     }
     
     @IBOutlet weak var video: UIImageView!
@@ -27,9 +28,6 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     
     
     @IBOutlet var textField: UITextField!
-    
-    
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -69,23 +67,28 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func submitPost(_ sender: Any) {
-        // self.caption = caption , self.user = username
-        self.caption = textField.text
-        let user = User(name: self.user! )
-        let caption = self.caption ?? " "
-        //let comment = Comment
-        let post = Post(postOwner: user, caption: caption, numberOfLikes: 0, status: PostStatus.active)
-        let videoManager = VideoManager()
+        //let videoManager = VideoManager()
         let dataManager = DataManager()
-        if self.videoURL == nil {
-            print("Video is nil. Not uploading or creating post.")
-        } else {
-            videoManager.uploadVideo(url: self.videoURL!, id: post.id)
-            dataManager.createUser(user: user)
-            dataManager.createPost(post: post)
+        
+        dataManager.getUser(username: self.username!) { user in
+            if user.isEmpty {
+                // then create the user
+                self.user = User(name: self.username!)
+                dataManager.createUser(user: self.user!)
+            } else {
+                self.user = user[0]
+            }
+            let caption = self.caption ?? "caption not working"
+            let post = Post(postOwner: self.user!, caption: caption, numberOfLikes: 0, status: PostStatus.active)
+            print("Submitting \(post) for user \(user)")
+            if self.videoURL == nil {
+                print("Video Url is nil. Not uploading or creating post.")
+            } else {
+                //videoManager.uploadVideo(url: self.videoURL!, id: post.id)
+                dataManager.createPost(post: post)
+            }
         }
-        navigationController?.popViewController(animated: true)
     }
 }
-    
+
 
