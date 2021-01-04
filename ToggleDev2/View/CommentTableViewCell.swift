@@ -28,7 +28,7 @@ class CommentTableViewCell: UITableViewCell {
     //MARK: - configuration
     func configure(with comment: Comment) {
         let attrs = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: UIFont.Weight(rawValue: 1))]
-        let attributedString = NSMutableAttributedString(string: comment.owner.name, attributes:attrs)
+        let attributedString = NSMutableAttributedString(string: "\(comment.owner.name) ", attributes:attrs)
         let normalString = NSMutableAttributedString(string: comment.content)
         attributedString.append(normalString)
         commentLabel.attributedText = attributedString
