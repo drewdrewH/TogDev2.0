@@ -9,7 +9,7 @@ import Foundation
 import Amplify
 import AmplifyPlugins
 
-class CommentsViewModel: ObservableObject {
+class CommentViewModel: ObservableObject {
     @Published var comments = [Comment]()
     init() {
         DataManager().getAllComments() { comments in

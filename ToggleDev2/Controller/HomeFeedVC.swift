@@ -60,6 +60,8 @@ class HomeFeedVC: UIViewController {
         let thumbnailManager = ThumbnailManager()
         setupNavControllerView()
         let dataModel = PostViewModel()
+        let urls = URLModel(posts: dataModel.posts)
+        print("Urls: \(urls)")
         for post in dataModel.posts {
             self.posts.append(post)
             let url = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(post.id).mp4"
@@ -161,6 +163,7 @@ extension HomeFeedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //DataManager().clearLocalData()
         let model = posts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainFeedCell") as! MainFeedTableViewCell
         cell.configure(with: model)

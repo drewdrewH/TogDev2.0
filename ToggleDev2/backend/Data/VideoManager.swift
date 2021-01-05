@@ -23,7 +23,7 @@ class VideoManager {
                     print("Failed to remove file.")
                 }
             }
-            try FileManager.default.moveItem(at: url, to: docDirURL)
+            try FileManager.default.copyItem(at: url, to: docDirURL)
             print("Movie saved in application store.")
             let dataManager = DataManager()
             movToMp4(at: docDirURL) { (mp4Url, _) in

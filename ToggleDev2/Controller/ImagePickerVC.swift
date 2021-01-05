@@ -67,24 +67,26 @@ class ImagePickerVC: UIViewController , UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func submitPost(_ sender: Any) {
-        //let videoManager = VideoManager()
+        let videoManager = VideoManager()
         let dataManager = DataManager()
         
         dataManager.getUser(username: self.username!) { user in
             if user.isEmpty {
                 // then create the user
+                print("Creating new user \(self.username!)")
                 self.user = User(name: self.username!)
                 dataManager.createUser(user: self.user!)
             } else {
+                print("Using old user \(self.username!)")
                 self.user = user[0]
             }
             let caption = self.caption ?? "caption not working"
             let post = Post(postOwner: self.user!, caption: caption, numberOfLikes: 0, status: PostStatus.active)
-            print("Submitting \(post) for user \(user)")
+            print("Submitting \(post) for user \(self.username!)")
             if self.videoURL == nil {
                 print("Video Url is nil. Not uploading or creating post.")
             } else {
-                //videoManager.uploadVideo(url: self.videoURL!, id: post.id)
+                videoManager.uploadVideo(url: self.videoURL!, id: post.id)
                 dataManager.createPost(post: post)
             }
         }

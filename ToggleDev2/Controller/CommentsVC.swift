@@ -20,7 +20,7 @@ class CommentsVC: UIViewController {
     
     //MARK: - variables
     private var currentComments = [Comment]()
-    private let fetchedComments = CommentsViewModel()
+    private let fetchedComments = CommentViewModel()
     
     //MARK: - view life cycle
     override func viewDidLoad() {
