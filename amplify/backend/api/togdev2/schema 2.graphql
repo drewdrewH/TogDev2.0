@@ -1,0 +1,27 @@
+enum PostStatus {
+  ACTIVE
+  INACTIVE
+}
+
+type Post @model {
+  id: ID!
+  postOwner: User! @connection(name: "PostOwner")
+  caption: String!
+  numberOfLikes: Int!
+  status: PostStatus!
+  comments: [Comment] @connection(name: "PostComments")
+}
+
+type User @model {
+  id: ID!
+  name: String!
+  posts: [Post] @connection(name: "PostOwner")
+  comments: [Comment] @connection(name: "CommentOwner")
+}
+
+type Comment @model {
+  id: ID!
+  content: String!
+  owner: User! @connection(name: "CommentOwner")
+  post: Post @connection(name: "PostComments")
+}

@@ -11,6 +11,13 @@ import AmplifyPlugins
 
 class currentSessionInfo {
     
+    func getCurrentUser() -> AuthUser?{
+        if let user = Amplify.Auth.getCurrentUser() {
+            return user
+        }
+        return nil
+    }
+    
     func fetchCurrentAuthSession() {
         _ = Amplify.Auth.fetchAuthSession { result in
             switch result {

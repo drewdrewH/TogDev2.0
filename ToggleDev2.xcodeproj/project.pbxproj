@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0119DEDB25A1046600B571F0 /* LocalVideosCollectionViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119DEDA25A1046600B571F0 /* LocalVideosCollectionViewVC.swift */; };
+		0119DEE425A109ED00B571F0 /* localVideosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119DEE325A109ED00B571F0 /* localVideosCollectionViewCell.swift */; };
 		01236ED22595D23A00B162C7 /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01236ED12595D23A00B162C7 /* HomeFeedVC.swift */; };
 		01236ED72595ECF300B162C7 /* customImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01236ED62595ECF300B162C7 /* customImageView.swift */; };
 		012FB3D825948E570076ECCA /* ConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FB3D725948E570076ECCA /* ConfirmationVC.swift */; };
@@ -27,6 +29,7 @@
 		013096AC25943AB500720A8A /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013096AB25943AB500720A8A /* SignUpVC.swift */; };
 		01529B8325A03710004131E4 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01529B8225A03710004131E4 /* ProfileVC.swift */; };
 		01529BC925A04D44004131E4 /* ViewControllersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01529BC825A04D44004131E4 /* ViewControllersExtensions.swift */; };
+		0160582525A122CC00B335F1 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0160582425A122CC00B335F1 /* CreatePostViewController.swift */; };
 		017E1BD825A02B5F006753B8 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017E1BD725A02B5F006753B8 /* CommentsViewModel.swift */; };
 		018D7D4D259A92BD002F5E83 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D7D4C259A92BD002F5E83 /* CommentsVC.swift */; };
 		01BF9298259FDB3100A0627B /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BF9297259FDB3100A0627B /* AppConfigurations.swift */; };
@@ -51,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0119DEDA25A1046600B571F0 /* LocalVideosCollectionViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideosCollectionViewVC.swift; sourceTree = "<group>"; };
+		0119DEE325A109ED00B571F0 /* localVideosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localVideosCollectionViewCell.swift; sourceTree = "<group>"; };
 		01236ED12595D23A00B162C7 /* HomeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		01236ED62595ECF300B162C7 /* customImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customImageView.swift; sourceTree = "<group>"; };
 		012FB3D725948E570076ECCA /* ConfirmationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationVC.swift; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		013096AB25943AB500720A8A /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		01529B8225A03710004131E4 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		01529BC825A04D44004131E4 /* ViewControllersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersExtensions.swift; sourceTree = "<group>"; };
+		0160582425A122CC00B335F1 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		017E1BD725A02B5F006753B8 /* CommentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 		018D7D4C259A92BD002F5E83 /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		01BF9297259FDB3100A0627B /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 				0130967B259419F100720A8A /* CustomTextField.swift */,
 				01236ED62595ECF300B162C7 /* customImageView.swift */,
 				01529BC825A04D44004131E4 /* ViewControllersExtensions.swift */,
+				0119DEE325A109ED00B571F0 /* localVideosCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +208,8 @@
 				01236ED12595D23A00B162C7 /* HomeFeedVC.swift */,
 				018D7D4C259A92BD002F5E83 /* CommentsVC.swift */,
 				01529B8225A03710004131E4 /* ProfileVC.swift */,
+				0119DEDA25A1046600B571F0 /* LocalVideosCollectionViewVC.swift */,
+				0160582425A122CC00B335F1 /* CreatePostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -401,6 +410,7 @@
 				01302660259720760096D62A /* PlayerControllerManager.swift in Sources */,
 				01236ED22595D23A00B162C7 /* HomeFeedVC.swift in Sources */,
 				0130262D2596B6130096D62A /* MainFeedTableViewCell.swift in Sources */,
+				0160582525A122CC00B335F1 /* CreatePostViewController.swift in Sources */,
 				23D79DDE259B175E00EB0DFF /* currentSessionInfo.swift in Sources */,
 				012FB3D825948E570076ECCA /* ConfirmationVC.swift in Sources */,
 				013096AC25943AB500720A8A /* SignUpVC.swift in Sources */,
@@ -416,7 +426,9 @@
 				013096582593FE3E00720A8A /* AppDelegate.swift in Sources */,
 				013096622593FE3E00720A8A /* ToggleDev2.xcdatamodeld in Sources */,
 				0130965A2593FE3E00720A8A /* SceneDelegate.swift in Sources */,
+				0119DEE425A109ED00B571F0 /* localVideosCollectionViewCell.swift in Sources */,
 				013026342596D4770096D62A /* PostViewModel.swift in Sources */,
+				0119DEDB25A1046600B571F0 /* LocalVideosCollectionViewVC.swift in Sources */,
 				23D79DEB259B280B00EB0DFF /* ImagePickerVC.swift in Sources */,
 				99C61316E5174C6FAF42E251 /* AmplifyModels.swift in Sources */,
 				23D79DE1259B179400EB0DFF /* ListenToSessionUpdates.swift in Sources */,

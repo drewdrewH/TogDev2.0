@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "togdev2",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authtogdev2825ba683",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
