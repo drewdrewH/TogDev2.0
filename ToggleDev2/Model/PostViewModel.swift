@@ -8,12 +8,23 @@
 import Foundation
 
 class PostViewModel: ObservableObject {
-    @Published var posts = [Post]()
+    var posts = [Post]()
+    var urls = [URL]()
     
     //here we call API to get posts data, for now it's hard coded. The Post() struct is created under Model section
     init () {
         DataManager().getAllPosts() { ps in
+            print("Before Posts")
             self.posts = ps
+            print("Before URL")
+            let res = URLModel(posts: self.posts) { urls in
+                self.urls = urls
+            }
+            DispatchQueue.main.async {
+                print("URLModel: \(self.urls)")
+            }
+            //sleep(1)
+            print(res)
         }
         let _ = print("Posts: \(self.posts)")
     }

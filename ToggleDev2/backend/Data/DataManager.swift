@@ -28,48 +28,8 @@ class DataManager {
     }
     
     /*
-     Mostly for debugging, get all posts from the post table in the database.
+     Create the given post
      */
-    func getAllComments(completion:@escaping ([Comment]) -> ()) {
-        Amplify.API.query(request: .list(Comment.self)) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let comments):
-                    print("Successfully retrieved all comments: \(comments)")
-                    completion(comments)
-                case .failure(let error):
-                    print("Got failed result with \(error.errorDescription)")
-                }
-            case .failure(let error):
-                print("Got failed event with error \(error)")
-            }
-        }
-        
-    }
-    
-    func getPostComments(post: Post, completion:@escaping (List<Comment>?) -> ()) {
-        Amplify.API.query(request: .get(Post.self, byId: post.id)) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let post):
-                    guard let post = post else {
-                        print("Could not find post")
-                        return
-                    }
-                    print("Successfully retrieved post: \(post)")
-                    completion(post.comments)
-                case .failure(let error):
-                    print("Got failed result with \(error.errorDescription)")
-                }
-            case .failure(let error):
-                print("Got failed event with error \(error)")
-            }
-        }
-    }
-    
-    
     func createPost(post: Post) {
         Amplify.DataStore.save(post) { result in
             switch result {
@@ -82,6 +42,61 @@ class DataManager {
         }
     }
     
+    /*
+     Mostly for debugging, get all posts from the post table in the database.
+     */
+    func getAllComments(completion:@escaping ([Comment]) -> ()) {
+        Amplify.DataStore.query(Comment.self) { result in
+            switch result {
+            case .success(let comments):
+                print("Successfully retrieved all comments: \(comments)")
+                completion(comments)
+            case .failure(let error):
+                print("Got failed result with \(error.errorDescription)")
+            }
+        }
+        
+    }
+    
+    /*
+     Get the comments associated with the post
+     */
+    func getPostComments(post: Post, completion:@escaping ([Comment]) -> ()) {
+        Amplify.DataStore.query(Comment.self, where: Comment.CodingKeys.id == post.id) { result in
+            switch result {
+            case .success(let comment):
+                print("Successfully retrieved comments: \(comment)")
+                completion(comment)
+            case .failure(let error):
+                print("Got failed result with \(error.errorDescription)")
+            }
+        }
+    }
+    
+    /*
+     Create a new comment from the correct post.
+     */
+    func createNewComment(content: String, post: Post) {
+        self.createComment(comment: Comment(content: content, owner: post.postOwner, post: post))
+    }
+    
+    /*
+     Create a comment from a proper comment object
+     */
+    func createComment(comment: Comment) {
+        Amplify.DataStore.save(comment) { result in
+            switch result {
+            case .success:
+                print("Comment saved successfully!")
+            case .failure(let error):
+                print("Error saving Comment \(error)")
+            }
+        }
+    }
+    
+    /*
+     Create the given user object
+     */
     func createUser(user: User) {
         Amplify.DataStore.save(user) { result in
             switch result {
@@ -99,18 +114,13 @@ class DataManager {
     func getUser(username: String, completion:@escaping ([User]) -> ()) {
         print("Getting user \(username)")
         let predicate = User.keys.name == username
-        Amplify.API.query(request: .list(User.self, where: predicate)) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let user):
-                    print("Retrieved users \(user) with username: \(username)")
-                    completion(user)
-                case .failure(let error):
-                    print("Got failed result with \(error.errorDescription)")
-                }
+        Amplify.DataStore.query(User.self, where: predicate) { result in
+            switch result {
+            case .success(let user):
+                print("Retrieved users \(user) with username: \(username)")
+                completion(user)
             case .failure(let error):
-                print("Got failed event with error \(error)")
+                print("Got failed result with \(error.errorDescription)")
             }
         }
     }
@@ -149,5 +159,18 @@ class DataManager {
                 print("Error clearing DataStore: \(error)")
             }
         }
+    }
+    
+    
+    func getURL(postId: String, completion:@escaping (URL) -> ()) {
+        Amplify.Storage.getURL(key: "\(postId).mp4") { event in
+            switch event {
+            case let .success(url):
+                completion(url)
+            case let .failure(storageError):
+                print("Failed: \(storageError.errorDescription). \(storageError.recoverySuggestion)")
+            }
+        }
+
     }
 }
