@@ -44,6 +44,8 @@
 		2522DF325A000CAF5430BA3F /* Pods_ToggleDev2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1371196A59E6743607377CE /* Pods_ToggleDev2.framework */; };
 		290AD8C5C3764B4AAE963413 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F313055FCD54D79B9D3CF83 /* amplifyconfiguration.json */; };
 		2954A5B2EEC8444B9E3EDFBC /* PostStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358B590B470E4670944A7F52 /* PostStatus.swift */; };
+		6276EFC225A402B500E7D66C /* URLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6276EFC025A402B500E7D66C /* URLModel.swift */; };
+		6276EFC325A402B500E7D66C /* S3URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6276EFC125A402B500E7D66C /* S3URL.swift */; };
 		62B1B6F3259DA0AA00DF8A84 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B1B6F2259DA0AA00DF8A84 /* DataManager.swift */; };
 		62B1B6F6259DA36500DF8A84 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B1B6F5259DA36500DF8A84 /* VideoManager.swift */; };
 		7F2BB7D4872545B2989EBD17 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D6B6B63F024DA08B950332 /* Post.swift */; };
@@ -95,6 +97,8 @@
 		526B1D886F2048D391E45373 /* User.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
 		554599FDA8C541C2907DAC4B /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		561489E5EAA341C0BEA21CB1 /* Comment+Schema.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "Comment+Schema.swift"; path = "amplify/generated/models/Comment+Schema.swift"; sourceTree = "<group>"; };
+		6276EFC025A402B500E7D66C /* URLModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLModel.swift; sourceTree = "<group>"; };
+		6276EFC125A402B500E7D66C /* S3URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3URL.swift; sourceTree = "<group>"; };
 		62B1B6F2259DA0AA00DF8A84 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		62B1B6F5259DA36500DF8A84 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		6C4FD96398ED4492BD65A48E /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				264F0CBF17FB4981AC20F146 /* AmplifyModels */,
 				0130265C259720210096D62A /* MainFeedVideoPlayers */,
 				013026332596D4770096D62A /* PostViewModel.swift */,
+				6276EFC125A402B500E7D66C /* S3URL.swift */,
+				6276EFC025A402B500E7D66C /* URLModel.swift */,
 				017E1BD725A02B5F006753B8 /* CommentsViewModel.swift */,
 			);
 			path = Model;
@@ -427,11 +433,13 @@
 				013096622593FE3E00720A8A /* ToggleDev2.xcdatamodeld in Sources */,
 				0130965A2593FE3E00720A8A /* SceneDelegate.swift in Sources */,
 				0119DEE425A109ED00B571F0 /* localVideosCollectionViewCell.swift in Sources */,
+				6276EFC325A402B500E7D66C /* S3URL.swift in Sources */,
 				013026342596D4770096D62A /* PostViewModel.swift in Sources */,
 				0119DEDB25A1046600B571F0 /* LocalVideosCollectionViewVC.swift in Sources */,
 				23D79DEB259B280B00EB0DFF /* ImagePickerVC.swift in Sources */,
 				99C61316E5174C6FAF42E251 /* AmplifyModels.swift in Sources */,
 				23D79DE1259B179400EB0DFF /* ListenToSessionUpdates.swift in Sources */,
+				6276EFC225A402B500E7D66C /* URLModel.swift in Sources */,
 				0C64924766AD452C8EBE78C4 /* Comment.swift in Sources */,
 				1A84DF692E3B456DA23A5810 /* Comment+Schema.swift in Sources */,
 				7F2BB7D4872545B2989EBD17 /* Post.swift in Sources */,
