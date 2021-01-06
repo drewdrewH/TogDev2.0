@@ -827,6 +827,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="2Z9-4K-GoS">
+                                <rect key="frame" x="188" y="385" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Co3-1S-lzB"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -840,6 +844,7 @@
                     <navigationItem key="navigationItem" id="N9r-qM-9P3"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="ActivityIndicator" destination="2Z9-4K-GoS" id="5L5-YQ-7uq"/>
                         <outlet property="tableView" destination="0ny-Og-OgL" id="jnP-4j-aSd"/>
                         <segue destination="Rei-c9-YG9" kind="show" id="2sh-kX-9SE"/>
                         <segue destination="VFb-H1-11c" kind="show" id="O5M-d7-y7a"/>
@@ -967,76 +972,6 @@
             </objects>
             <point key="canvasLocation" x="-761" y="2216"/>
         </scene>
-        <!--Image PickerVC-->
-        <scene sceneID="WFk-vL-00c">
-            <objects>
-                <viewController storyboardIdentifier="imagePickerViewController" id="gfN-Ep-R1F" customClass="ImagePickerVC" customModule="ToggleDev2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="M3X-xx-L2r">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-nk-1ac" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
-                                <rect key="frame" x="182" y="411" width="50" height="22"/>
-                                <state key="normal" title=" ">
-                                    <imageReference key="image" image="arrow.up.right.video.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="gfN-Ep-R1F" eventType="touchUpInside" id="7Qn-AM-zOd"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="U9O-Az-WVX">
-                                <rect key="frame" x="20" y="457" width="374" height="34"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVi-nh-KfS">
-                                        <rect key="frame" x="0.0" y="0.0" width="347" height="34"/>
-                                        <color key="backgroundColor" red="0.089277040160000001" green="0.08798704634" blue="0.085598270480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-nt-Xx9" customClass="SFSymbolsIconButton" customModule="ToggleDev2" customModuleProvider="target">
-                                        <rect key="frame" x="348" y="-2" width="26" height="38.5"/>
-                                        <state key="normal" title=" ">
-                                            <imageReference key="backgroundImage" image="paperplane.fill" catalog="system" symbolScale="large"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="submitPost:" destination="gfN-Ep-R1F" eventType="touchUpInside" id="5Nj-m6-PdA"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pXb-aM-IEE">
-                                <rect key="frame" x="0.0" y="44" width="414" height="328"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="328" id="OWp-M1-YuY"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="frc-jc-MkU"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="pXb-aM-IEE" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" id="7Sv-PD-b6r"/>
-                            <constraint firstItem="pXb-aM-IEE" firstAttribute="centerX" secondItem="Ccc-nk-1ac" secondAttribute="centerX" id="K5z-ZV-eyL"/>
-                            <constraint firstItem="U9O-Az-WVX" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="20" id="Npv-rR-d1d"/>
-                            <constraint firstItem="Ccc-nk-1ac" firstAttribute="leading" secondItem="frc-jc-MkU" secondAttribute="leading" constant="182" id="Nu2-gA-GXW"/>
-                            <constraint firstItem="pXb-aM-IEE" firstAttribute="top" secondItem="frc-jc-MkU" secondAttribute="top" id="V9y-Gs-8lR"/>
-                            <constraint firstItem="Ccc-nk-1ac" firstAttribute="top" secondItem="pXb-aM-IEE" secondAttribute="bottom" constant="39" id="coy-gK-7gh"/>
-                            <constraint firstItem="Ccc-nk-1ac" firstAttribute="centerX" secondItem="M3X-xx-L2r" secondAttribute="centerX" id="n7p-ac-Dio"/>
-                            <constraint firstItem="frc-jc-MkU" firstAttribute="trailing" secondItem="U9O-Az-WVX" secondAttribute="trailing" constant="20" id="nxm-Od-W8k"/>
-                            <constraint firstItem="U9O-Az-WVX" firstAttribute="top" secondItem="Ccc-nk-1ac" secondAttribute="bottom" constant="24" id="pdk-kJ-bhI"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="lBK-R7-lyD"/>
-                    <connections>
-                        <outlet property="textField" destination="PVi-nh-KfS" id="zHg-he-b8l"/>
-                        <outlet property="video" destination="pXb-aM-IEE" id="T0U-Fp-1vh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ldk-uz-9eH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2752" y="2600"/>
-        </scene>
         <!--Local Videos Collection ViewVC-->
         <scene sceneID="cYu-S0-lsY">
             <objects>
@@ -1059,7 +994,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SGJ-1p-5OK">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SGJ-1p-5OK">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:59" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl3-hj-l5F">
@@ -1135,7 +1070,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJU-Ge-FHR">
                                 <rect key="frame" x="0.0" y="301" width="414" height="404"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="highway" translatesAutoresizingMaskIntoConstraints="NO" id="4jP-uj-cLj">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="highway" translatesAutoresizingMaskIntoConstraints="NO" id="4jP-uj-cLj">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="404"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0Dm-v4-ueD">
@@ -1393,7 +1328,6 @@
     <color key="tintColor" red="0.25882352939999997" green="0.87058823529999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="AppLogo" width="144" height="32"/>
-        <image name="arrow.up.right.video.fill" catalog="system" width="128" height="82"/>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="delete.left.fill" catalog="system" width="128" height="104"/>
@@ -1403,7 +1337,6 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="message" catalog="system" width="128" height="113"/>
-        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="play.circle" catalog="system" width="128" height="121"/>

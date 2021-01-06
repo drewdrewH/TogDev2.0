@@ -22,9 +22,9 @@ class PlayerControllerManager: ObservableObject {
         return playerControllers.removeValue(forKey: id)
     }
     
-    func createPlayerController(videoURL: String) -> PlayerConroller {
+    func createPlayerController(videoURL: URL?) -> PlayerConroller {
         let player = AVPlayer()
-        let asset = AVAsset(url: URL(string: videoURL)!)
+        let asset = AVAsset(url: videoURL!)
         let playerItem = AVPlayerItem(asset: asset)
         let playerToReturn = PlayerConroller(AVPlayer: player, AVplayerItem: playerItem)
         return playerToReturn
@@ -49,15 +49,6 @@ class PlayerControllerManager: ObservableObject {
         }
     }
     
-    public func replacePlayerItem(from currentPostID: String, to newPost: Post) {
-        let vidUrl = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(newPost.id).mp4"
-        print("Vid Url: \(vidUrl)")
-        let AVPlayerToUpdate = getUniquePlayer(postID: currentPostID)
-        let asset = AVAsset(url: URL(string: vidUrl)!)
-        let playerItem = AVPlayerItem(asset: asset)
-        AVPlayerToUpdate?.replacePlayerItem(AVPlayerItem: playerItem)
-    }
-    
     public func assignPlayerTo(cellPlayerLayer: UIView, withID: String) {
         if let sublayers = cellPlayerLayer.layer.sublayers {
             for layer in sublayers {
@@ -77,4 +68,6 @@ class PlayerControllerManager: ObservableObject {
             currentPlayer.seekVideoToStart()
         }
     }
+    
+    
 }

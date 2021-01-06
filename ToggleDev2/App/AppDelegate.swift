@@ -14,7 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let appConfigurations = AppConfigurations()
+        let dataStoreFunctions = DataStoreFunctions()
+        
+        appConfigurations.listenToDataStoreEvents()
         appConfigurations.configureAmplify()
+        dataStoreFunctions.startDataStoreSyncing()
         appConfigurations.configureAudio()
         appConfigurations.listenToAuthState()
         return true

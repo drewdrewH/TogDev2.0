@@ -30,7 +30,7 @@ class ListenToSessionUpdates {
             case HubPayload.EventName.Auth.signedOut:
                 self.makeRootView(ViewControllerID: "LoginScreen")
                 print("User signed out (from listener)")
-
+            
             default:
                 break
             }
