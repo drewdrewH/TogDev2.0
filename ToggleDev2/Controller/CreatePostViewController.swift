@@ -37,8 +37,8 @@ class CreatePostViewController: UIViewController {
         if captionTextView.text != "Add a caption..." {
             caption = captionTextView.text ?? ""
         }
-        let user = User(name: username)
-        let post = Post(postOwner: user, caption: caption, numberOfLikes: 0, status: PostStatus.active)
+        let user = User(name: "Zisc")
+        let post = Post(postOwner: user, caption: caption, numberOfLikes: 9985, status: PostStatus.active)
         let videoManager = VideoManager()
         let dataManager = DataManager()
         
