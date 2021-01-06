@@ -12,13 +12,19 @@ class HomeFeedVC: UIViewController {
         
     //MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
     
     //MARK: - variables
     private var posts = [Post]()
+    var URLS =  [String : URL]()
+    var thumbnails = [String : UIImage?]()
+    
     private let playerManager = PlayerControllerManager()
+    private let fetchPosts = FetchPostsManager()
     private var visibleCells = [IndexPath : CGFloat]()
     private var currentPlayingCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     private var postIsLiked = [Bool]()
+    private var dataIsReadyToBeDisplayed = false
     
     //MARK: - view life cycle
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,6 +38,7 @@ class HomeFeedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        playInitialCell()
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBar.barTintColor = .black
         self.navigationController?.navigationBar.isTranslucent = false
@@ -40,9 +47,7 @@ class HomeFeedVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        playInitialCell()
         print(Amplify.Auth.getCurrentUser() ?? "")
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -57,17 +62,11 @@ class HomeFeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let thumbnailManager = ThumbnailManager()
+        centerActivityIndicator()
+        startObservingEvents()
         setupNavControllerView()
-        let dataModel = PostViewModel()
-       // self.posts.append(Post(postOwner: User(name: "Zisc"), caption: "Follow me on Toggle and subscribe to my Youtube channel for more content!", numberOfLikes: 9784, status:PostStatus.active))
-        for post in dataModel.posts {
-            self.posts.append(post)
-            let url = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(post.id).mp4"
-            thumbnailManager.previewImageFromVideo(url: URL(string: url)! as NSURL)
-            self.postIsLiked.append(false)
-        }
-        
+        startActivityIndicator()
+        self.tableView.isHidden = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -94,9 +93,67 @@ class HomeFeedVC: UIViewController {
             let cell = tableView.cellForRow(at: indexPath)
             let MainFeedInitialCell = cell as! MainFeedTableViewCell
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                MainFeedInitialCell.prepareToPlayVideo()
                 self.playerManager.playUniquePlayer(postID: MainFeedInitialCell.postID)
+                MainFeedInitialCell.prepareToPlayVideo()
                 self.currentPlayingCellIndexPath = indexPath
+            }
+        }
+    }
+    
+    private func startObservingEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(startFetching(notification:)), name: Notification.Name("DataStoreReady"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeFeedVC.videoEnded), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+    
+    private func stopObservingEvents() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func startActivityIndicator() {
+        ActivityIndicator.isHidden = false
+        ActivityIndicator.startAnimating()
+    }
+    
+    private func stopActivityIndicator() {
+        ActivityIndicator.isHidden = true
+        ActivityIndicator.stopAnimating()
+    }
+    
+    private func centerActivityIndicator() {
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.windows[0]
+            let topPadding = window.safeAreaInsets.top
+            let bottomPadding = window.safeAreaInsets.bottom
+            let heightPosition = self.view.bounds.height - topPadding - bottomPadding
+            ActivityIndicator.center = CGPoint(x: self.view.bounds.size.width/2, y: heightPosition/3)
+        }
+    }
+    
+    
+    @objc private func videoEnded() {
+        let getCurrentPlayingCell = tableView.cellForRow(at: currentPlayingCellIndexPath)
+        let currentPlayingMainFeedCell = getCurrentPlayingCell as? MainFeedTableViewCell
+        playerManager.restartPlayer(for: currentPlayingMainFeedCell?.postID ?? "")
+        playerManager.playUniquePlayer(postID: currentPlayingMainFeedCell?.postID ?? "")
+    }
+    
+    @objc private func startFetching(notification: NSNotification) {
+        fetchPosts.getAllPostsData { (dataIsReady) in
+            if dataIsReady {
+                DispatchQueue.main.async {
+                    self.posts = self.fetchPosts.postsFetched
+                    self.URLS = self.fetchPosts.URLsFetched
+                    self.thumbnails = self.fetchPosts.ThumbNailsFetched
+                    for _ in self.posts {
+                        self.postIsLiked.append(false)
+                    }
+                    self.tableView.reloadData()
+                    self.stopActivityIndicator()
+                    self.tableView.isHidden = false
+                    self.playInitialCell()
+                    NotificationCenter.default.removeObserver(self, name: Notification.Name("DataStoreReady"), object: nil)
+
+                }
             }
         }
     }
@@ -134,17 +191,17 @@ extension HomeFeedVC: UITableViewDelegate {
         calculateVisibleCellHeightOnScreen()
         if let mostVisibleCell = visibleCells.max(by: { a, b in a.value < b.value }) {
             let getMostVisibleCell = tableView.cellForRow(at: mostVisibleCell.key)
-            let mostVisibleMainFeedCell = getMostVisibleCell as! MainFeedTableViewCell
+            let mostVisibleMainFeedCell = getMostVisibleCell as? MainFeedTableViewCell
             
             let getCurrentPlayingCell = tableView.cellForRow(at: currentPlayingCellIndexPath)
-            let currentPlayingMainFeedCell = getCurrentPlayingCell as! MainFeedTableViewCell
-            if mostVisibleMainFeedCell.postID != currentPlayingMainFeedCell.postID {
-                currentPlayingMainFeedCell.prepareToStopVideo()
-                playerManager.pauseUniquePlayer(postID: currentPlayingMainFeedCell.postID)
-                playerManager.restartPlayer(for: currentPlayingMainFeedCell.postID)
+            let currentPlayingMainFeedCell = getCurrentPlayingCell as? MainFeedTableViewCell
+            if mostVisibleMainFeedCell?.postID != currentPlayingMainFeedCell?.postID {
+                currentPlayingMainFeedCell?.prepareToStopVideo()
+                playerManager.pauseUniquePlayer(postID: currentPlayingMainFeedCell?.postID ?? "")
+                playerManager.restartPlayer(for: currentPlayingMainFeedCell?.postID ?? "")
 
-                mostVisibleMainFeedCell.prepareToPlayVideo()
-                self.playerManager.playUniquePlayer(postID: mostVisibleMainFeedCell.postID)
+                mostVisibleMainFeedCell?.prepareToPlayVideo()
+                self.playerManager.playUniquePlayer(postID: mostVisibleMainFeedCell?.postID ?? "")
                 currentPlayingCellIndexPath = mostVisibleCell.key
                 
             }
@@ -165,6 +222,7 @@ extension HomeFeedVC: UITableViewDataSource {
         cell.configure(with: model)
         cell.delegate = self
         cell.tag = indexPath.row
+        cell.thumbnail.image = thumbnails[cell.postID]!
         if(postIsLiked[indexPath.row]) {
             let image = UIImage(systemName: "heart.fill")
             cell.likeButton.setImage(image, for: .normal)
@@ -184,7 +242,8 @@ extension HomeFeedVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? MainFeedTableViewCell {
-            let currentPlayerController = playerManager.createPlayerController(videoURL: cell.videoURL)
+            let url = URLS[cell.postID]
+            let currentPlayerController = playerManager.createPlayerController(videoURL: url)
             playerManager.appendPlayerController(postID: cell.postID, player: currentPlayerController)
             cell.addVideoPlayerLayer(to: cell.playerContainer)
             playerManager.assignPlayerTo(cellPlayerLayer: cell.playerContainer, withID: cell.postID)

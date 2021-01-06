@@ -44,4 +44,10 @@ class AppConfigurations {
         let sessionUpdates = ListenToSessionUpdates()
         sessionUpdates.listenToUpdates()
     }
+    
+    //MARK: - Data Store
+    func listenToDataStoreEvents() {
+        let dataStoreEvents = ListenToDataStoreEvents()
+        dataStoreEvents.listenToDataStoreUpdates()
+    }
 }
