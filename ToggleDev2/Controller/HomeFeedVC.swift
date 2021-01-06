@@ -30,7 +30,7 @@ class HomeFeedVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        
         super.viewWillAppear(animated)
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBar.barTintColor = .black
@@ -60,6 +60,7 @@ class HomeFeedVC: UIViewController {
         let thumbnailManager = ThumbnailManager()
         setupNavControllerView()
         let dataModel = PostViewModel()
+       // self.posts.append(Post(postOwner: User(name: "Zisc"), caption: "Follow me on Toggle and subscribe to my Youtube channel for more content!", numberOfLikes: 9784, status:PostStatus.active))
         for post in dataModel.posts {
             self.posts.append(post)
             let url = "https://togdev2b55dd05348be4fabbdeffd3b013c1bc2231450-togdev.s3-us-west-2.amazonaws.com/public/\(post.id).mp4"
@@ -194,11 +195,16 @@ extension HomeFeedVC: UITableViewDataSource {
 //MARK: - user cell interactions
 extension HomeFeedVC: MainFeedCellDelegate {
     func didTapCommentButton(for cell: MainFeedTableViewCell) {
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "commentsViewController") as? CommentsVC {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "commentsViewController") as? CommentsVC{
               if let navigator = navigationController {
                   navigator.pushViewController(viewController, animated: true)
               }
+            
+            let indexPath = currentPlayingCellIndexPath
+            viewController.post = posts[indexPath.row]
           }
+        
+        
         
     }
     

@@ -11,6 +11,8 @@ import AmplifyPlugins
 
 class CommentsVC: UIViewController {
     
+    var post: Post?
+    var commentsList: [Comment]?
     //MARK: - IBOutlets
     @IBOutlet weak var commentTextField: UITextView!
     @IBOutlet weak var tableView: UITableView!
@@ -21,10 +23,13 @@ class CommentsVC: UIViewController {
     //MARK: - variables
     private var currentComments = [Comment]()
     private let fetchedComments = CommentsViewModel()
+     
     
     //MARK: - view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentsList = Array(self.post!.comments!)
+        fetchedComments.comments = commentsList!
         setupNavBar()
         for comment in fetchedComments.comments {
             currentComments.append(comment)
@@ -43,6 +48,7 @@ class CommentsVC: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         makeTextFieldFirstResponder()
+        print("this is post ID!! \(self.post?.id ?? "")")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -130,9 +136,14 @@ class CommentsVC: UIViewController {
     
     //MARK: - IB Actions
     @IBAction func postButtonPressed(_ sender: Any) {
-        let comment = Comment(content: commentTextField.text, owner: User(name: "Walid"))
+        let user = User(name: Amplify.Auth.getCurrentUser()?.username ?? "")
+        let comment = Comment(content: commentTextField.text, owner: user, post: self.post)
         currentComments.append(comment)
         // TODO: put this comment in the cloud
+        let dataManager = DataManager()
+        
+        dataManager.createUser(user: user)
+        dataManager.createComment(comment:comment)
         setupCommentTextView()
         scrollToBottom()
         disablePostButton()
