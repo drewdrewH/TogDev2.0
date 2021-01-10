@@ -47,12 +47,6 @@ class CommentsVC: UIViewController {
         
         setupNavBar()
         
-        DataManager().getUser(username: Amplify.Auth.getCurrentUser()!.username ){users in
-            for user in users{
-                self.user = user
-            }
-            
-        }
         DataManager().getPostComments(post: self.post!){ comments in
             for comment in comments {
                 self.currentComments.append(comment)
@@ -147,12 +141,12 @@ class CommentsVC: UIViewController {
     
     //MARK: - IB Actions
     @IBAction func postButtonPressed(_ sender: Any) {
-        let user = User(name: Amplify.Auth.getCurrentUser()?.username ?? "")
-        let comment = Comment(content: commentTextField.text, owner: user, post: self.post)
+        let user = self.user
+        let comment = Comment(content: commentTextField.text, owner: user!, post: self.post)
         
         self.currentComments.append(comment)
         let dataManager = DataManager()
-        dataManager.createUser(user: user)
+
         self.post?.comments = List(self.currentComments)
         dataManager.createComment(post: self.post!, comment: comment)
         
