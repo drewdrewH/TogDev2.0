@@ -57,11 +57,22 @@ class DataManager {
         }
     }
     
+    func updatePost(post: Post, list :List<Comment>){
+        Amplify.DataStore.save(post) {result in
+            switch result {
+            case .success:
+                print("Updated the existing post with \(list)")
+            case .failure(let error):
+                print("Error updating post - \(error.localizedDescription)")
+            }
+        }
+    }
+    
     /*
      Get the comments associated with the post
      */
     func getPostComments(post: Post, completion:@escaping ([Comment]) -> ()) {
-        Amplify.DataStore.query(Comment.self, where: Comment.CodingKeys.id == post.id) { result in
+        Amplify.DataStore.query(Comment.self, where: Comment.CodingKeys.post == post.id) { result in
             switch result {
             case .success(let comment):
                 print("Successfully retrieved comments: \(comment)")
@@ -75,10 +86,13 @@ class DataManager {
     /*
      Create a comment from a proper comment object
      */
-    func createComment(comment: Comment) {
+    func createComment(comment: Comment, post:Post, comments: [Comment] ) {
+        var commentsList : [Comment] = comments
         Amplify.DataStore.save(comment) { result in
             switch result {
             case .success:
+                commentsList.append(comment)
+                self.updatePost(post: post, list:List(commentsList))
                 print("Comment saved successfully!")
             case .failure(let error):
                 print("Error saving Comment \(error)")

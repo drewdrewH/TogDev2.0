@@ -9,8 +9,9 @@ import UIKit
 import Amplify
 import AmplifyPlugins
 
+
 class CommentsVC: UIViewController {
-    
+    var user : User?
     var post: Post?
     var commentsList: [Comment]?
     //MARK: - IBOutlets
@@ -22,18 +23,15 @@ class CommentsVC: UIViewController {
     
     //MARK: - variables
     private var currentComments = [Comment]()
-    private let fetchedComments = CommentsViewModel()
+    //private let fetchedComments = CommentsViewModel()
      
     
     //MARK: - view life cycle
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentsList = Array(self.post!.comments!)
-        fetchedComments.comments = commentsList!
-        setupNavBar()
-        for comment in fetchedComments.comments {
-            currentComments.append(comment)
-        }
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 400
         tableView.delegate = self
@@ -47,6 +45,20 @@ class CommentsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        
+        setupNavBar()
+        
+        DataManager().getUser(username: Amplify.Auth.getCurrentUser()!.username ){users in
+            for user in users{
+                self.user = user
+            }
+            
+        }
+        DataManager().getPostComments(post: self.post!){ comments in
+            for comment in comments {
+                self.currentComments.append(comment)
+            }
+        }
         makeTextFieldFirstResponder()
         print("this is post ID!! \(self.post?.id ?? "")")
     }
@@ -139,11 +151,8 @@ class CommentsVC: UIViewController {
         let user = User(name: Amplify.Auth.getCurrentUser()?.username ?? "")
         let comment = Comment(content: commentTextField.text, owner: user, post: self.post)
         self.currentComments.append(comment)
-        // TODO: put this comment in the cloud
         let dataManager = DataManager()
-        
         dataManager.createUser(user: user)
-        // or you could use createNewComment
         dataManager.createComment(comment:comment)
         setupCommentTextView()
         scrollToBottom()

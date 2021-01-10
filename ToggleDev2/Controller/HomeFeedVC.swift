@@ -9,7 +9,7 @@ import UIKit
 import Amplify
 
 class HomeFeedVC: UIViewController {
-        
+    var user : User?
     //MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
@@ -47,6 +47,12 @@ class HomeFeedVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print(Amplify.Auth.getCurrentUser() ?? "")
+        DataManager().getUser(username: Amplify.Auth.getCurrentUser()!.username ){users in
+            for user in users{
+                self.user = user
+            }
+            
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -162,6 +168,7 @@ class HomeFeedVC: UIViewController {
               if let navigator = navigationController {
                   navigator.pushViewController(viewController, animated: true)
               }
+            
         }
     }
 }
@@ -259,6 +266,7 @@ extension HomeFeedVC: MainFeedCellDelegate {
               }
             
             let indexPath = currentPlayingCellIndexPath
+            viewController.user = self.user
             viewController.post = posts[indexPath.row]
           }
         

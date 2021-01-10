@@ -9,6 +9,7 @@ import UIKit
 
 class SignUpVC: UIViewController {
     //MARK: - IBOutlets
+    var user: User?
     @IBOutlet weak var userNameTextField: UITextField! {
         didSet {
             setIcon(textField: userNameTextField, imageName: "person.fill")
@@ -66,6 +67,7 @@ class SignUpVC: UIViewController {
         let username = userNameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         let email = emailTextField.text ?? ""
+        
         validateUserInput()
         sessionManager.signUp(username: username, password: password, email: email) {[weak self] result in
             switch result {
