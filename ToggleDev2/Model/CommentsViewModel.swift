@@ -11,8 +11,9 @@ import AmplifyPlugins
 
 class CommentsViewModel: ObservableObject {
     @Published var comments = [Comment]()
+    var post : Post?
     init() {
-        DataManager().getAllComments() { comments in
+        DataManager().getAllComments(){ comments in
             for comment in comments {
                 self.comments.append(comment)
             }

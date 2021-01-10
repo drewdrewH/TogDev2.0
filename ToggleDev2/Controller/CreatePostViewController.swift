@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Amplify
 class CreatePostViewController: UIViewController {
 
     //MARK: - IB outlets
@@ -19,12 +19,19 @@ class CreatePostViewController: UIViewController {
     var localVideoURL: URL? = nil
     var videoThumbnailImage: UIImage? = UIImage(named: "highway")
     let userInfo = currentSessionInfo()
-    
+    var user : User?
+    var comments : [Comment]?
     //MARK: - view life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
         captionTextView.delegate = self
+        DataManager().getUser(username: Amplify.Auth.getCurrentUser()!.username ){users in
+            for user in users{
+                self.user = user
+            }
+            
+        }
     }
 
     //MARK: - IB Actions
@@ -37,14 +44,20 @@ class CreatePostViewController: UIViewController {
         if captionTextView.text != "Add a caption..." {
             caption = captionTextView.text ?? ""
         }
-        let user = User(name: "Zisc")
-        let post = Post(postOwner: user, caption: caption, numberOfLikes: 9985, status: PostStatus.active)
+        let user = self.user
+        
+        
+        let comments: List<Comment> = []
+        let post = Post(postOwner: user!, caption: caption, numberOfLikes: 9985, status: PostStatus.active, comments : comments)
+        //let comment = Comment(content: caption, owner: user!, post: post)
+        
         let videoManager = VideoManager()
         let dataManager = DataManager()
         
         videoManager.uploadVideo(url: videoURL, id: post.id)
-        dataManager.createUser(user: user)
+        dataManager.createUser(user: user!)
         dataManager.createPost(post: post)
+       // dataManager.createComment(comment: comment)
         self.popBackNavController(3)
     }
     

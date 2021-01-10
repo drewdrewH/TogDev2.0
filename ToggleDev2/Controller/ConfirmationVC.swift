@@ -8,7 +8,7 @@
 import UIKit
 
 class ConfirmationVC: UIViewController {
-
+    var user : User?
     //MARK: - IB Outlets
     @IBOutlet weak var welcomeLabel: UILabel!
     
@@ -97,6 +97,9 @@ class ConfirmationVC: UIViewController {
             switch result {
             case .success(let authSignInResult):
                 if authSignInResult.isSignedIn {
+                    let dataManager = DataManager()
+                    self!.user = User(name: self!.username)
+                    dataManager.createUser(user: self!.user!)
                     print("user is signed in")
                 }
             case .failure(let error):
