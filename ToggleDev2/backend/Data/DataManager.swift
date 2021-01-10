@@ -49,13 +49,12 @@ class DataManager {
         Amplify.DataStore.query(Comment.self) { result in
             switch result {
             case .success(let comments):
-                print("Successfully retrieved all comments: \(comments)")
+                print("Successfully retrieved \(comments.count) comments")
                 completion(comments)
             case .failure(let error):
                 print("Got failed result with \(error.errorDescription)")
             }
         }
-        
     }
     
     /*
@@ -71,13 +70,6 @@ class DataManager {
                 print("Got failed result with \(error.errorDescription)")
             }
         }
-    }
-    
-    /*
-     Create a new comment from the correct post.
-     */
-    func createNewComment(content: String, post: Post) {
-        self.createComment(comment: Comment(content: content, owner: post.postOwner, post: post))
     }
     
     /*

@@ -73,7 +73,7 @@ class CreatePostViewController: UIViewController {
     }
 }
 
-//MARK: - UI Text Field delegate
+//MARK: - UI Text Field delegSate
 extension CreatePostViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -95,7 +95,7 @@ class CommentsVC: UIViewController {
     }
     
     private func scrollToBottom() {
-        if currentComments.count != 0 {
+        if self.currentComments.count != 0 {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 let indexPath = IndexPath(row: self.currentComments.count-1, section: 0)
@@ -138,11 +138,12 @@ class CommentsVC: UIViewController {
     @IBAction func postButtonPressed(_ sender: Any) {
         let user = User(name: Amplify.Auth.getCurrentUser()?.username ?? "")
         let comment = Comment(content: commentTextField.text, owner: user, post: self.post)
-        currentComments.append(comment)
+        self.currentComments.append(comment)
         // TODO: put this comment in the cloud
         let dataManager = DataManager()
         
         dataManager.createUser(user: user)
+        // or you could use createNewComment
         dataManager.createComment(comment:comment)
         setupCommentTextView()
         scrollToBottom()

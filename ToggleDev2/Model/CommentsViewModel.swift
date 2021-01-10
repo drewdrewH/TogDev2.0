@@ -17,6 +17,5 @@ class CommentsViewModel: ObservableObject {
                 self.comments.append(comment)
             }
         }
-        print("Comments: \(self.comments)")
     }
 }

@@ -20,7 +20,6 @@ class AppConfigurations {
            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: models))
            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: models))
            try Amplify.add(plugin: AWSS3StoragePlugin())
-           
            try Amplify.configure()
            print("Amplify configured with auth plugin")
        } catch {
