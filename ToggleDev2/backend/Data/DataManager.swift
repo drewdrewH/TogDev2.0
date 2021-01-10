@@ -13,7 +13,6 @@ class DataManager {
     
     /*
      Get a list of all the posts in the database.
-     completionHandler:@escaping([Post]) ->[Post]
      */
     func getAllPosts(completion: ([Post]) -> ()) {
         Amplify.DataStore.query(Post.self) { result in
@@ -57,28 +56,26 @@ class DataManager {
         }
     }
     
-    func updatePost(post: Post, list :List<Comment>){
-        Amplify.DataStore.save(post) {result in
-            switch result {
-            case .success:
-                print("Updated the existing post with \(list)")
-            case .failure(let error):
-                print("Error updating post - \(error.localizedDescription)")
-            }
-        }
-    }
-    
     /*
      Get the comments associated with the post
      */
     func getPostComments(post: Post, completion:@escaping ([Comment]) -> ()) {
-        Amplify.DataStore.query(Comment.self, where: Comment.CodingKeys.post == post.id) { result in
-            switch result {
-            case .success(let comment):
-                print("Successfully retrieved comments: \(comment)")
-                completion(comment)
+        Amplify.DataStore.query(Post.self, byId: post.id) {
+            switch $0 {
+            case .success(let post):
+                if let postWithComments = post {
+                    if let comments = postWithComments.comments {
+                        var commentsList: [Comment] = []
+                        for comment in comments {
+                            commentsList.append(comment)
+                        }
+                        completion(commentsList)
+                    }
+                } else {
+                    print("Post not found")
+                }
             case .failure(let error):
-                print("Got failed result with \(error.errorDescription)")
+                print("Post not found - \(error.localizedDescription)")
             }
         }
     }
@@ -86,13 +83,18 @@ class DataManager {
     /*
      Create a comment from a proper comment object
      */
-    func createComment(comment: Comment, post:Post, comments: [Comment] ) {
-        var commentsList : [Comment] = comments
-        Amplify.DataStore.save(comment) { result in
-            switch result {
+    func createComment(post: Post, comment: Comment) {
+        Amplify.DataStore.save(post) { postResult in
+            switch postResult {
             case .success:
-                commentsList.append(comment)
-                self.updatePost(post: post, list:List(commentsList))
+                Amplify.DataStore.save(comment) { commentResult in
+                    switch commentResult {
+                    case .success:
+                        print("New Comment Saved: \(comment)")
+                    case .failure:
+                        print("Failed to save new comment.")
+                    }
+                }
                 print("Comment saved successfully!")
             case .failure(let error):
                 print("Error saving Comment \(error)")
@@ -155,7 +157,6 @@ class DataManager {
         )
     }
     
-    
     func clearLocalData() {
         Amplify.DataStore.clear { result in
             switch result {
@@ -167,7 +168,6 @@ class DataManager {
         }
     }
     
-    
     func getURL(postId: String, completion:@escaping (URL) -> ()) {
         Amplify.Storage.getURL(key: "\(postId).mp4") { event in
             switch event {
@@ -177,6 +177,6 @@ class DataManager {
                 print("Failed: \(storageError.errorDescription). \(storageError.recoverySuggestion)")
             }
         }
-
+        
     }
 }

@@ -23,7 +23,6 @@ class CommentsVC: UIViewController {
     
     //MARK: - variables
     private var currentComments = [Comment]()
-    //private let fetchedComments = CommentsViewModel()
      
     
     //MARK: - view life cycle
@@ -150,10 +149,13 @@ class CommentsVC: UIViewController {
     @IBAction func postButtonPressed(_ sender: Any) {
         let user = User(name: Amplify.Auth.getCurrentUser()?.username ?? "")
         let comment = Comment(content: commentTextField.text, owner: user, post: self.post)
+        
         self.currentComments.append(comment)
         let dataManager = DataManager()
         dataManager.createUser(user: user)
-        dataManager.createComment(comment:comment)
+        self.post?.comments = List(self.currentComments)
+        dataManager.createComment(post: self.post!, comment: comment)
+        
         setupCommentTextView()
         scrollToBottom()
         disablePostButton()
