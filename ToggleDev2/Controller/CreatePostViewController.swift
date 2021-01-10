@@ -55,9 +55,9 @@ class CreatePostViewController: UIViewController {
         let dataManager = DataManager()
         
         videoManager.uploadVideo(url: videoURL, id: post.id)
-        dataManager.createUser(user: user!)
+        
         dataManager.createPost(post: post)
-       // dataManager.createComment(comment: comment)
+       
         self.popBackNavController(3)
     }
     
